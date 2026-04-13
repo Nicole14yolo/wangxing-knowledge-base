@@ -8,7 +8,6 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="logo">王兴思想库</a>
@@ -18,22 +17,20 @@
         <li><a href="companies.html" class="active">公司档案</a></li>
         <li><a href="people.html">人物档案</a></li>
         <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Detail Header -->
   <div class="detail-header" id="detail-header">
     <div class="container">
       <a href="companies.html" style="color: var(--color-mid-gray); font-size: 0.9rem;">← 返回公司列表</a>
       <h1 id="company-name" style="margin-top: 16px;">加载中...</h1>
-      <div class="detail-meta" id="company-meta">
-        <!-- Will be populated by JS -->
-      </div>
+      <div class="detail-meta" id="company-meta"></div>
     </div>
   </div>
 
-  <!-- Detail Content -->
   <section class="detail-content">
     <div class="container">
       <div class="markdown-body" id="markdown-content">
@@ -42,7 +39,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -51,14 +47,14 @@
           <a href="index.html">首页</a>
           <a href="companies.html">公司</a>
           <a href="people.html">人物</a>
+          <a href="models.html">思维模型</a>
+          <a href="quotes.html">金句</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/kb-data.js"></script>
   <script>
-    // Parse URL parameters
     const params = new URLSearchParams(window.location.search);
     const companyName = params.get('name');
 
@@ -66,80 +62,70 @@
       document.getElementById('company-name').textContent = '未指定公司名称';
       document.getElementById('markdown-content').innerHTML = '<p>请在URL中指定公司名称，例如：?name=美团</p>';
     } else {
-      document.getElementById('company-name').textContent = companyName;
+      loadCompany(companyName);
+    }
 
-      // Load from embedded data
-      const markdown = window.getCompanyData(companyName);
+    async function loadCompany(name) {
+      try {
+        const response = await fetch('data/companies.json');
+        const companies = await response.json();
+        const markdown = companies[name];
 
-      if (markdown) {
-        renderContent(markdown);
-      } else {
-        // Try to load other companies or show message
-        loadAllCompaniesAndRender(companyName);
+        if (markdown) {
+          document.getElementById('company-name').textContent = name;
+          extractAndRenderMeta(markdown);
+          renderContent(markdown);
+        } else {
+          showNotFound(name);
+        }
+      } catch (error) {
+        console.error('Failed to load company:', error);
+        document.getElementById('markdown-content').innerHTML = '<p>加载失败，请确保通过服务器访问</p>';
       }
     }
 
-    function loadAllCompaniesAndRender(name) {
-      // Check if data exists in KB_DATA.companies
-      if (typeof KB_DATA !== 'undefined' && KB_DATA.companies && KB_DATA.companies[name]) {
-        renderContent(KB_DATA.companies[name]);
-      } else {
-        showNotFound(name);
+    function extractAndRenderMeta(markdown) {
+      const countMatch = markdown.match(/mention_count:\s*(\d+)/);
+      const domainMatch = markdown.match(/domain:\s*"([^"]+)"/);
+
+      const meta = [];
+      if (countMatch) {
+        meta.push(`<div class="detail-meta-item"><div class="detail-meta-label">提及次数</div><div class="detail-meta-value">${countMatch[1]} 次</div></div>`);
       }
+      if (domainMatch) {
+        meta.push(`<div class="detail-meta-item"><div class="detail-meta-label">领域</div><div class="detail-meta-value">${domainMatch[1]}</div></div>`);
+      }
+
+      document.getElementById('company-meta').innerHTML = meta.join('');
     }
 
     function showNotFound(name) {
+      document.getElementById('company-name').textContent = name;
       document.getElementById('company-meta').innerHTML = '';
       document.getElementById('markdown-content').innerHTML = `
         <div style="text-align: center; padding: 60px 20px;">
           <h2 style="color: var(--color-mid-gray);">「${name}」档案暂未收录</h2>
-          <p style="color: var(--color-mid-gray); margin-top: 16px;">
-            当前演示版本仅包含部分公司档案。
-          </p>
-          <a href="companies.html" class="btn btn-primary" style="margin-top: 24px;">
-            查看已收录公司
-          </a>
         </div>
       `;
     }
 
     function renderContent(markdown) {
-      // Extract metadata from frontmatter
-      const yamlMatch = markdown.match(/---\n([\s\S]*?)\n---/);
-      let meta = {};
-      if (yamlMatch) {
-        const yaml = yamlMatch[1];
-        meta.domain = yaml.match(/domain:\s*"(.+?)"/)?.[1];
-        meta.region = yaml.match(/region:\s*"(.+?)"/)?.[1];
-        meta.count = yaml.match(/mention_count:\s*(\d+)/)?.[1];
-      }
+      // Remove YAML frontmatter - everything from --- to the next ---
+      const body = markdown.replace(/^---\n[\s\S]*?\n---\n*/, '').trim();
 
-      // Render meta
-      const metaDiv = document.getElementById('company-meta');
-      metaDiv.innerHTML = `
-        ${meta.domain ? `
-          <div class="detail-meta-item">
-            <div class="detail-meta-label">领域</div>
-            <div class="detail-meta-value">${meta.domain}</div>
-          </div>
-        ` : ''}
-        ${meta.region ? `
-          <div class="detail-meta-item">
-            <div class="detail-meta-label">地区</div>
-            <div class="detail-meta-value">${meta.region}</div>
-          </div>
-        ` : ''}
-        ${meta.count ? `
-          <div class="detail-meta-item">
-            <div class="detail-meta-label">提及次数</div>
-            <div class="detail-meta-value">${meta.count} 次</div>
-          </div>
-        ` : ''}
-      `;
+      // Configure marked
+      const renderer = new marked.Renderer();
+      renderer.link = function(href, title, text) {
+        if (href && href.startsWith('[[')) {
+          // It's a wikilink, convert to search
+          const cleanText = text || href.replace(/\[\[|\]\]/g, '').split('|').pop();
+          return `<a href="search.html?q=${encodeURIComponent(cleanText)}" style="color: var(--color-orange);">${cleanText}</a>`;
+        }
+        return `<a href="${href || '#'}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+      };
 
-      // Render markdown content (remove frontmatter)
-      const content = markdown.replace(/---\n[\s\S]*?\n---/, '').trim();
-      document.getElementById('markdown-content').innerHTML = marked.parse(content);
+      marked.setOptions({ renderer, gfm: true });
+      document.getElementById('markdown-content').innerHTML = marked.parse(body);
     }
   </script>
 </body>

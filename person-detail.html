@@ -18,6 +18,8 @@
         <li><a href="companies.html">公司档案</a></li>
         <li><a href="people.html" class="active">人物档案</a></li>
         <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
       </ul>
     </div>
   </nav>
@@ -134,8 +136,20 @@
         `;
 
         // Render markdown content (remove frontmatter)
-        const content = markdown.replace(/---\n[\s\S]*?\n---/, '').trim();
-        document.getElementById('markdown-content').innerHTML = marked.parse(content);
+        const body = markdown.replace(/^---\n[\s\S]*?\n---\n*/, '').trim();
+
+        // Configure marked for wikilinks
+        const renderer = new marked.Renderer();
+        renderer.link = function(href, title, text) {
+          if (href && href.startsWith('[[')) {
+            const cleanText = text || href.replace(/\[\[|\]\]/g, '').split('|').pop();
+            return `<a href="search.html?q=${encodeURIComponent(cleanText)}" style="color: var(--color-orange);">${cleanText}</a>`;
+          }
+          return `<a href="${href || '#'}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+        };
+
+        marked.setOptions({ renderer, gfm: true });
+        document.getElementById('markdown-content').innerHTML = marked.parse(body);
       }
 
       function showDemoContent() {

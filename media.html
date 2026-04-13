@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>书影歌刊 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .media-tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      justify-content: center;
+    }
+
+    .media-tab {
+      padding: 12px 24px;
+      background: white;
+      border: 2px solid var(--color-light-gray);
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .media-tab:hover, .media-tab.active {
+      border-color: var(--color-orange);
+      background: var(--color-orange);
+      color: white;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .media-card {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+
+    .media-card:hover {
+      border-color: var(--color-orange);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .media-type {
+      font-size: 0.75rem;
+      color: var(--color-orange);
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .media-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .meta-count {
+      color: var(--color-mid-gray);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      background: var(--color-warm-bg);
+      border-radius: 16px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="detail-header">
+    <div class="container">
+      <h1>书影歌刊</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        王兴提及的书籍、影视、歌曲与刊物
+      </p>
+      <div class="detail-meta" style="margin-top: 20px;">
+        <div class="detail-meta-item"><div class="detail-meta-label">书籍</div><div class="detail-meta-value">30 本</div></div>
+        <div class="detail-meta-item"><div class="detail-meta-label">影视</div><div class="detail-meta-value">33 部</div></div>
+        <div class="detail-meta-item"><div class="detail-meta-label">歌曲</div><div class="detail-meta-value">43 首</div></div>
+        <div class="detail-meta-item"><div class="detail-meta-label">刊物</div><div class="detail-meta-value">16 本</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="media-tabs">
+        <div class="media-tab active" onclick="switchTab('books', this)">📚 书籍 (30)</div>
+        <div class="media-tab" onclick="switchTab('movies', this)">🎬 影视 (33)</div>
+        <div class="media-tab" onclick="switchTab('songs', this)">🎵 歌曲 (43)</div>
+        <div class="media-tab" onclick="switchTab('magazines', this)">📰 刊物 (16)</div>
+      </div>
+
+      <div id="media-content">
+        <div class="media-grid" id="books-grid">
+          <div class="media-card"><div class="media-type">书籍</div><div class="media-title">三体</div><div class="meta-count">刘慈欣 · 提及 12 次</div><div class="tag-cloud"><span class="tag">科幻</span><span class="tag">宇宙观</span></div></div>
+          <div class="media-card"><div class="media-type">书籍</div><div class="media-title">人类简史</div><div class="meta-count">尤瓦尔·赫拉利 · 提及 8 次</div><div class="tag-cloud"><span class="tag">历史</span><span class="tag">认知</span></div></div>
+          <div class="media-card"><div class="media-type">书籍</div><div class="media-title">资本论</div><div class="meta-count">马克思 · 提及 6 次</div><div class="tag-cloud"><span class="tag">经济</span><span class="tag">哲学</span></div></div>
+          <div class="media-card"><div class="media-type">书籍</div><div class="media-title">浪潮之巅</div><div class="meta-count">吴军 · 提及 9 次</div><div class="tag-cloud"><span class="tag">科技</span><span class="tag">商业</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+          <a href="models.html">思维模型</a>
+          <a href="quotes.html">金句</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mediaData = {
+      books: [
+        { title: '三体', author: '刘慈欣', count: 12, tags: ['科幻', '宇宙观'] },
+        { title: '人类简史', author: '尤瓦尔·赫拉利', count: 8, tags: ['历史', '认知'] },
+        { title: '资本论', author: '马克思', count: 6, tags: ['经济', '哲学'] },
+        { title: '浪潮之巅', author: '吴军', count: 9, tags: ['科技', '商业'] },
+        { title: '穷查理宝典', author: '查理·芒格', count: 7, tags: ['投资', '思维'] },
+        { title: '看不见的城市', author: '卡尔维诺', count: 5, tags: ['文学', '想象'] }
+      ],
+      movies: [
+        { title: '肖申克的救赎', director: '弗兰克·德拉邦特', count: 8, tags: ['经典', '自由'] },
+        { title: '让子弹飞', director: '姜文', count: 15, tags: ['国产', '隐喻'] },
+        { title: '黑客帝国', director: '沃卓斯基姐妹', count: 6, tags: ['科幻', '哲学'] },
+        { title: '阿甘正传', director: '泽米吉斯', count: 7, tags: ['励志', '人生'] }
+      ],
+      songs: [
+        { title: '海阔天空', artist: 'Beyond', count: 10, tags: ['摇滚', '经典'] },
+        { title: '董小姐', artist: '宋冬野', count: 8, tags: ['民谣', '故事'] },
+        { title: 'Hallelujah', artist: 'Leonard Cohen', count: 5, tags: ['经典', '深情'] },
+        { title: 'Viva La Vida', artist: 'Coldplay', count: 6, tags: ['摇滚', '史诗'] }
+      ],
+      magazines: [
+        { title: 'The Economist', type: '周刊', count: 18, tags: ['财经', '国际'] },
+        { title: '南方周末', type: '周报', count: 12, tags: ['深度', '调查'] },
+        { title: '第一财经周刊', type: '周刊', count: 9, tags: ['商业', '中国'] },
+        { title: '彭博商业周刊', type: '周刊', count: 7, tags: ['商业', '全球'] }
+      ]
+    };
+
+    function switchTab(type, el) {
+      document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      renderGrid(type);
+    }
+
+    function renderGrid(type) {
+      const data = mediaData[type] || [];
+      const container = document.getElementById('media-content');
+      container.innerHTML = `<div class="media-grid">${data.map(item => `
+        <div class="media-card">
+          <div class="media-type">${type === 'books' ? '书籍' : type === 'movies' ? '影视' : type === 'songs' ? '歌曲' : '刊物'}</div>
+          <div class="media-title">${item.title}</div>
+          <div class="meta-count">${item.author || item.director || item.artist || item.type} · 提及 ${item.count} 次</div>
+          <div class="tag-cloud">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    // Initial render
+    renderGrid('books');
+  </script>
+</body>
+</html>

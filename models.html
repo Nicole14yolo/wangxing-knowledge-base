@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>思维模型 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .model-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--color-light-gray);
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .model-card:hover {
+      border-color: var(--color-orange);
+      box-shadow: 0 8px 32px rgba(217, 119, 87, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .model-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-orange);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .model-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .model-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .model-name {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+
+    .model-count {
+      background: var(--color-warm-bg);
+      color: var(--color-orange);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-heading);
+    }
+
+    .model-definition {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-mid-gray);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-light-gray);
+    }
+
+    .model-perspective {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .model-perspective::before {
+      content: '👤';
+      flex-shrink: 0;
+    }
+
+    .model-perspective-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-dark);
+      background: var(--color-warm-bg);
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 3px solid var(--color-orange);
+    }
+
+    .model-quotes {
+      margin-top: 16px;
+    }
+
+    .model-quote {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--color-dark);
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--color-light-gray);
+    }
+
+    .model-quote:last-child {
+      margin-bottom: 0;
+    }
+
+    .model-quote-label {
+      font-size: 0.75rem;
+      color: var(--color-mid-gray);
+      margin-bottom: 4px;
+      font-family: var(--font-heading);
+    }
+
+    .model-action {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .view-details {
+      color: var(--color-orange);
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .view-details::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+
+    .model-card:hover .view-details::after {
+      transform: translateX(4px);
+    }
+
+    .insights-section {
+      margin-top: 48px;
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .insight-card {
+      background: var(--color-warm-bg);
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .insight-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--color-orange);
+      margin-bottom: 8px;
+    }
+
+    .insight-label {
+      font-size: 0.9rem;
+      color: var(--color-mid-gray);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html" class="active">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="detail-header">
+    <div class="container">
+      <h1>思维模型</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        从 14,194 条语录中提炼的 16 个核心概念框架
+      </p>
+      <div class="detail-meta" style="margin-top: 20px;" id="stats-row">
+        <!-- Stats populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Models Grid -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-title">
+        <h2>16 个思维维度</h2>
+        <p>王兴思考的底层框架，点击卡片查看详情</p>
+      </div>
+
+      <div class="models-grid" id="models-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section class="section insights-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>数据洞察</h2>
+        <p>思维模型的经语录分布</p>
+      </div>
+
+      <div class="insights-grid" id="insights-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="search.html">搜索</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+          <a href="models.html">思维模型</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Load models data
+    let modelsData = {};
+
+    async function loadModels() {
+      try {
+        const response = await fetch('data/models.json');
+        modelsData = await response.json();
+        renderModels();
+        renderStats();
+      } catch (e) {
+        console.error('Failed to load models:', e);
+        document.getElementById('models-grid').innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+            <p>加载数据失败，请确保通过服务器访问</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderModels() {
+      const grid = document.getElementById('models-grid');
+      const entries = Object.values(modelsData).sort((a, b) => b.entry_count - a.entry_count);
+
+      grid.innerHTML = entries.map((model, index) => `
+        <div class="model-card" onclick="location.href='model-detail.html?name=${encodeURIComponent(model.name)}'">
+          <div class="model-header">
+            <div class="model-name">${index + 1}. ${model.name}</div>
+            <div class="model-count">${model.entry_count} 条语录</div>
+          </div>
+
+          <div class="model-definition">
+            <strong>定义：</strong>${model.definition || '暂无定义'}
+          </div>
+
+          ${model.perspective ? `
+          <div class="model-perspective">
+            <div class="model-perspective-text">
+              <strong>王兴视角：</strong>${model.perspective}
+            </div>
+          </div>
+          ` : ''}
+
+          ${model.quotes.length > 0 ? `
+          <div class="model-quotes">
+            <div class="model-quote-label">代表语录</div>
+            <div class="model-quote">「${model.quotes[0].slice(0, 80)}${model.quotes[0].length > 80 ? '...' : ''}」</div>
+          </div>
+          ` : ''}
+
+          <div class="model-action">
+            <span style="color: var(--color-mid-gray); font-size: 0.85rem;">${model.quotes.length} 条精选</span>
+            <span class="view-details">查看全部语录 →</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderStats() {
+      const entries = Object.values(modelsData);
+      const totalEntries = entries.reduce((sum, m) => sum + m.entry_count, 0);
+      const topModel = entries.reduce((max, m) => m.entry_count > max.entry_count ? m : max);
+      const avgEntries = Math.round(totalEntries / entries.length);
+
+      document.getElementById('stats-row').innerHTML = `
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">思维模型数</div>
+          <div class="detail-meta-value">16 个</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">涉及语录</div>
+          <div class="detail-meta-value">${totalEntries.toLocaleString()} 条</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">最高频模型</div>
+          <div class="detail-meta-value">${topModel.name} (${topModel.entry_count})</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">平均语录数</div>
+          <div class="detail-meta-value">${avgEntries} 条</div>
+        </div>
+      `;
+
+      // Insights grid
+      const timePeriods = [
+        { period: '2007-2009', desc: '早期/全球化视角', models: entries.filter(m => m.entry_count > 150).slice(0, 4) },
+        { period: '2010-2014', desc: '创业/产品阶段', models: entries.filter(m => ['产品思维', '用户体验', '效率'].some(k => m.name.includes(k))) },
+        { period: '2015-2017', desc: '扩张/战略阶段', models: entries.filter(m => ['战略', '竞争', '组织'].some(k => m.name.includes(k))) },
+        { period: '2018-2021', desc: '成熟期/认知深化', models: entries.filter(m => ['长期主义', '第一性原理'].some(k => m.name.includes(k))) }
+      ];
+
+      document.getElementById('insights-grid').innerHTML = `
+        <div class="insight-card">
+          <div class="insight-number">${totalEntries.toLocaleString()}</div>
+          <div class="insight-label">涉及语录总数</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-number">${topModel.name}</div>
+          <div class="insight-label">最高频概念 (${topModel.entry_count}条)</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-number">${entries.filter(m => m.entry_count > 300).length}</div>
+          <div class="insight-label">核心模型数 (>300条)</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-number">15</div>
+          <div class="insight-label">年思想演变 (2007-2021)</div>
+        </div>
+      `;
+    }
+
+    // Load on page load
+    loadModels();
+  </script>
+</body>
+</html>

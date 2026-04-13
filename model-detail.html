@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>思维模型详情 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .model-detail-header {
+      background: linear-gradient(135deg, var(--color-dark) 0%, #2a2a2a 100%);
+      color: white;
+      padding: 60px 0 40px;
+    }
+
+    .model-detail-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    .model-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .model-badge {
+      padding: 8px 16px;
+      background: rgba(217, 119, 87, 0.2);
+      color: var(--color-orange);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .definition-box {
+      background: var(--color-warm-bg);
+      border-left: 4px solid var(--color-orange);
+      padding: 24px;
+      border-radius: 0 12px 12px 0;
+      margin: 32px 0;
+    }
+
+    .definition-box h3 {
+      font-family: var(--font-heading);
+      color: var(--color-dark);
+      margin-bottom: 12px;
+    }
+
+    .perspective-box {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 32px 0;
+    }
+
+    .perspective-box h3 {
+      font-family: var(--font-heading);
+      color: var(--color-orange);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quotes-section {
+      margin-top: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-light-gray);
+    }
+
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+    }
+
+    .quote-count {
+      color: var(--color-mid-gray);
+      font-size: 0.9rem;
+    }
+
+    .quote-card {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: all 0.2s;
+    }
+
+    .quote-card:hover {
+      border-color: var(--color-orange);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quote-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--color-dark);
+      margin-bottom: 16px;
+    }
+
+    .quote-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-orange);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .timeline-chart {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .timeline-chart h3 {
+      font-family: var(--font-heading);
+      margin-bottom: 20px;
+    }
+
+    .timeline-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 200px;
+      padding-bottom: 32px;
+      position: relative;
+    }
+
+    .timeline-bar {
+      flex: 1;
+      background: var(--color-orange);
+      border-radius: 4px 4px 0 0;
+      min-height: 4px;
+      position: relative;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .timeline-bar:hover {
+      opacity: 0.8;
+    }
+
+    .timeline-bar-label {
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--color-mid-gray);
+      white-space: nowrap;
+    }
+
+    .timeline-bar-value {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--color-dark);
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .timeline-bar:hover .timeline-bar-value {
+      opacity: 1;
+    }
+
+    .related-models {
+      margin-top: 48px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .related-card {
+      background: var(--color-warm-bg);
+      padding: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .related-card:hover {
+      background: rgba(217, 119, 87, 0.1);
+    }
+
+    .related-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .related-count {
+      font-size: 0.85rem;
+      color: var(--color-mid-gray);
+    }
+
+    .not-found {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .not-found h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html" class="active">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="model-detail-header" id="detail-header">
+    <div class="container">
+      <a href="models.html" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">← 返回思维模型列表</a>
+      <h1 id="model-name">加载中...</h1>
+      <p id="model-definition" style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-top: 16px;"></p>
+      <div class="model-badges" id="model-badges"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Perspective -->
+          <div class="perspective-box" id="perspective-box">
+            <h3>👤 王兴视角</h3>
+            <p id="perspective-text"></p>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline-chart" id="timeline-section">
+            <h3>📊 时间分布</h3>
+            <div class="timeline-bars" id="timeline-bars"></div>
+          </div>
+
+          <!-- Quotes -->
+          <div class="quotes-section">
+            <div class="section-header">
+              <h2>代表语录</h2>
+              <span class="quote-count" id="quote-count"></span>
+            </div>
+            <div id="quotes-list"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <!-- Related Models -->
+          <div class="related-models">
+            <h3 style="font-family: var(--font-heading); margin-bottom: 16px;">相关思维模型</h3>
+            <div class="related-grid" id="related-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="search.html">搜索</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+          <a href="models.html">思维模型</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let allModels = {};
+    const urlParams = new URLSearchParams(window.location.search);
+    const modelName = urlParams.get('name');
+
+    async function loadModel() {
+      if (!modelName) {
+        showNotFound();
+        return;
+      }
+
+      try {
+        const response = await fetch('data/models.json');
+        allModels = await response.json();
+        const model = allModels[modelName];
+
+        if (!model) {
+          showNotFound();
+          return;
+        }
+
+        renderModel(model);
+      } catch (e) {
+        console.error('Failed to load model:', e);
+        document.body.innerHTML = '<div class="not-found"><h2>加载失败</h2><p>请确保通过服务器访问此页面</p></div>';
+      }
+    }
+
+    function renderModel(model) {
+      // Update header
+      document.getElementById('model-name').textContent = model.name;
+      document.getElementById('model-definition').textContent = model.definition || '暂无定义';
+      document.getElementById('model-badges').innerHTML = `
+        <span class="model-badge">${model.entry_count} 条语录</span>
+        <span class="model-badge">思维模型</span>
+      `;
+
+      // Perspective
+      document.getElementById('perspective-text').textContent = model.perspective || '暂无王兴视角';
+
+      // Timeline
+      renderTimeline(model.time_dist);
+
+      // Quotes
+      document.getElementById('quote-count').textContent = `${model.quotes.length} 条精选`;
+      renderQuotes(model.quotes);
+
+      // Related models
+      renderRelatedModels(model);
+    }
+
+    function renderTimeline(timeDist) {
+      const container = document.getElementById('timeline-bars');
+      if (!timeDist) {
+        container.innerHTML = '<p style="color: var(--color-mid-gray);">暂无时间分布数据</p>';
+        return;
+      }
+
+      // Parse "2007 (26), 2008 (5)..." format
+      const yearData = {};
+      const matches = timeDist.match(/(\d{4})\s*\((\d+)\)/g);
+      if (matches) {
+        matches.forEach(m => {
+          const [year, count] = m.match(/(\d{4})\s*\((\d+)\)/).slice(1, 3);
+          yearData[year] = parseInt(count);
+        });
+      }
+
+      // Find max for scaling
+      const maxCount = Math.max(...Object.values(yearData), 1);
+      const years = Object.keys(yearData).sort();
+
+      container.innerHTML = years.map(year => {
+        const count = yearData[year];
+        const height = Math.max((count / maxCount) * 100, 4);
+        return `
+          <div class="timeline-bar" style="height: ${height}%;">
+            <div class="timeline-bar-value">${count}</div>
+            <div class="timeline-bar-label">${year}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderQuotes(quotes) {
+      const container = document.getElementById('quotes-list');
+      if (quotes.length === 0) {
+        container.innerHTML = '<p style="color: var(--color-mid-gray);">暂无精选语录</p>';
+        return;
+      }
+
+      container.innerHTML = quotes.map((quote, index) => `
+        <div class="quote-card">
+          <div class="quote-text">「${quote}」</div>
+          <div class="quote-date">
+            <span>📅</span>
+            <span>代表语录 #${index + 1}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRelatedModels(currentModel) {
+      const container = document.getElementById('related-grid');
+      const related = Object.values(allModels)
+        .filter(m => m.name !== currentModel.name)
+        .sort((a, b) => b.entry_count - a.entry_count)
+        .slice(0, 8);
+
+      container.innerHTML = related.map(m => `
+        <a href="model-detail.html?name=${encodeURIComponent(m.name)}" class="related-card">
+          <div class="related-name">${m.name}</div>
+          <div class="related-count">${m.entry_count} 条语录</div>
+        </a>
+      `).join('');
+    }
+
+    function showNotFound() {
+      document.querySelector('.section').innerHTML = `
+        <div class="not-found">
+          <h2>未找到思维模型</h2>
+          <p>请检查 URL 中的模型名称是否正确</p>
+          <p style="margin-top: 24px;">
+            <a href="models.html" class="btn btn-primary">查看所有思维模型</a>
+          </p>
+        </div>
+      `;
+      document.getElementById('detail-header').style.display = 'none';
+    }
+
+    // Load on page load
+    loadModel();
+  </script>
+</body>
+</html>
