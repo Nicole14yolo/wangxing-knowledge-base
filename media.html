@@ -216,15 +216,14 @@
       }
 
       container.innerHTML = items.map(item => `
-        <div class="media-card">
+        <div class="media-card" onclick="showMediaDetail('${type}', '${item.name.replace(/'/g, "\\'")}')">
           <div class="media-type">${getTypeLabel(type)}</div>
           <div class="media-title">${item.title}</div>
           <div class="media-meta">提及 ${item.quote_count} 次 ${item.time_distribution ? '· ' + item.time_distribution : ''}</div>
-          ${item.description ? `<div class="media-desc">${item.description}</div>` : ''}
           ${item.quotes && item.quotes.length > 0 ? `
             <div class="quotes-preview">
-              ${item.quotes.slice(0, 2).map(q => `
-                <div class="quote-mini">「${q.text.slice(0, 80)}...」</div>
+              ${item.quotes.slice(0, 1).map(q => `
+                <div class="quote-mini">「${q.text.slice(0, 80)}${q.text.length > 80 ? '...' : ''}」</div>
               `).join('')}
             </div>
           ` : ''}
@@ -239,7 +238,67 @@
       return labels[type] || type;
     }
 
+    function showMediaDetail(type, name) {
+      const items = mediaData[type] || [];
+      const item = items.find(i => i.name === name);
+      if (!item) return;
+
+      const label = getTypeLabel(type);
+      document.getElementById('modal-title').textContent = item.title;
+      document.getElementById('modal-meta').textContent = `${label} · 提及 ${item.quote_count} 次`;
+      document.getElementById('modal-quotes').innerHTML = item.quotes && item.quotes.length > 0
+        ? item.quotes.map(q => `
+          <div class="modal-quote">
+            <div class="modal-quote-text">「${q.text}」</div>
+            <div class="modal-quote-date">📅 ${q.date}</div>
+          </div>
+        `).join('')
+        : '<p style="color:var(--color-mid-gray);">暂无语录</p>';
+
+      document.getElementById('media-modal').style.display = 'flex';
+    }
+
+    document.getElementById('modal-close').onclick = () => {
+      document.getElementById('media-modal').style.display = 'none';
+    };
+    document.getElementById('media-modal').onclick = (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
+    };
+
     loadData();
   </script>
+
+  <!-- Detail Modal -->
+  <div id="media-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:white; border-radius:16px; max-width:640px; width:100%; max-height:80vh; overflow:hidden; display:flex; flex-direction:column;">
+      <div style="padding:24px 28px 16px; border-bottom:1px solid var(--color-light-gray); display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div id="modal-title" style="font-family:var(--font-heading); font-size:1.3rem; font-weight:600;"></div>
+          <div id="modal-meta" style="color:var(--color-mid-gray); font-size:0.9rem; margin-top:4px;"></div>
+        </div>
+        <button id="modal-close" style="background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--color-mid-gray); padding:0 0 0 16px;">✕</button>
+      </div>
+      <div id="modal-quotes" style="padding:20px 28px; overflow-y:auto; display:flex; flex-direction:column; gap:16px;"></div>
+    </div>
+  </div>
+  <style>
+    .modal-quote {
+      background: var(--color-warm-bg);
+      border-left: 3px solid var(--color-orange);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+    }
+    .modal-quote-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--color-dark);
+      margin-bottom: 6px;
+    }
+    .modal-quote-date {
+      font-size: 0.8rem;
+      color: var(--color-mid-gray);
+    }
+    .media-card { cursor: pointer; }
+  </style>
 </body>
 </html>

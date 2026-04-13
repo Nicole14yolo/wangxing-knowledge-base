@@ -154,6 +154,12 @@ a:hover {
 
 .stat-item {
   text-align: center;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+a.stat-item:hover {
+  transform: translateY(-3px);
+  opacity: 0.8;
 }
 
 .stat-number {

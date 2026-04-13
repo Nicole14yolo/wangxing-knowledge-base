@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度分析 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .year-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .year-btn {
+      padding: 8px 18px;
+      border: 2px solid var(--color-light-gray);
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: var(--font-heading);
+      transition: all 0.2s;
+    }
+
+    .year-btn:hover, .year-btn.active {
+      background: var(--color-orange);
+      color: white;
+      border-color: var(--color-orange);
+    }
+
+    .year-panel {
+      display: none;
+    }
+
+    .year-panel.active {
+      display: block;
+    }
+
+    .year-hero {
+      background: var(--color-warm-bg);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .year-hero h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .year-hero .count {
+      color: var(--color-orange);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .year-hero .background {
+      color: var(--color-mid-gray);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .year-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .year-grid { grid-template-columns: 1fr; }
+    }
+
+    .year-card {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .year-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      color: var(--color-dark);
+    }
+
+    .dim-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .dim-name {
+      font-size: 0.85rem;
+      width: 90px;
+      flex-shrink: 0;
+      color: var(--color-dark);
+    }
+
+    .dim-track {
+      flex: 1;
+      height: 8px;
+      background: var(--color-light-gray);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .dim-fill {
+      height: 100%;
+      background: var(--color-orange);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .dim-count {
+      font-size: 0.8rem;
+      color: var(--color-mid-gray);
+      width: 40px;
+      text-align: right;
+    }
+
+    .insights-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .insights-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-light-gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-dark);
+    }
+
+    .insights-list li:last-child { border-bottom: none; }
+
+    .sample-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sample-quote {
+      background: var(--color-warm-bg);
+      border-left: 3px solid var(--color-orange);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .sample-quote .text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+    }
+
+    .sample-quote .date {
+      font-size: 0.8rem;
+      color: var(--color-mid-gray);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="insights.html" class="active">智库</a></li>
+        <li><a href="library.html">书影</a></li>
+        <li><a href="quotes.html">金句</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="detail-header">
+    <div class="container">
+      <div style="font-size:0.9rem; color:var(--color-mid-gray); margin-bottom:8px;">
+        <a href="insights.html" style="color:var(--color-orange); text-decoration:none;">智库</a> › 年度分析
+      </div>
+      <h1>年度商业分析</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        2007–2021 十五年思想演变，逐年解读商业背景与核心洞察
+      </p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="year-nav" id="year-nav">
+        <!-- populated by JS -->
+      </div>
+      <div id="year-panels">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料库</a>
+          <a href="insights.html">智库</a>
+          <a href="library.html">书影</a>
+          <a href="quotes.html">金句</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function loadYears() {
+      const res = await fetch('data/years-full.json');
+      const data = await res.json();
+      const years = Object.keys(data).sort();
+
+      const nav = document.getElementById('year-nav');
+      const panels = document.getElementById('year-panels');
+
+      nav.innerHTML = years.map(y => `
+        <button class="year-btn" onclick="selectYear('${y}', this)">${y}</button>
+      `).join('');
+
+      panels.innerHTML = years.map(y => {
+        const d = data[y];
+        const maxDim = Math.max(...(d.sections.dimensions.map(x => x.count) || [1]));
+        const insightLines = d.sections.insights
+          ? d.sections.insights.split('\n').filter(l => l.trim())
+          : [];
+
+        return `
+        <div class="year-panel" id="panel-${y}">
+          <div class="year-hero">
+            <h2>${d.title}</h2>
+            <div class="count">共 ${d.quote_count.toLocaleString()} 条语录</div>
+            ${d.sections.background ? `<div class="background">${d.sections.background}</div>` : ''}
+          </div>
+
+          <div class="year-grid">
+            ${d.sections.dimensions.length > 0 ? `
+            <div class="year-card">
+              <h3>📊 思想维度分布</h3>
+              ${d.sections.dimensions.map(dim => `
+                <div class="dim-bar">
+                  <div class="dim-name">${dim.name}</div>
+                  <div class="dim-track">
+                    <div class="dim-fill" style="width:${Math.round(dim.count / maxDim * 100)}%"></div>
+                  </div>
+                  <div class="dim-count">${dim.count}</div>
+                </div>
+              `).join('')}
+            </div>
+            ` : ''}
+
+            ${insightLines.length > 0 ? `
+            <div class="year-card">
+              <h3>💡 核心洞察</h3>
+              <ul class="insights-list">
+                ${insightLines.map(l => `<li>${l.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+              </ul>
+            </div>
+            ` : ''}
+          </div>
+
+          ${d.sections.sample_quotes && d.sections.sample_quotes.length > 0 ? `
+          <div class="year-card">
+            <h3>✍️ 代表性语录</h3>
+            <div class="sample-quotes" style="margin-top:16px;">
+              ${d.sections.sample_quotes.map(q => `
+                <div class="sample-quote">
+                  <div class="text">「${q}」</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          ` : ''}
+        </div>`;
+      }).join('');
+
+      // Select most recent year by default
+      const lastBtn = nav.querySelectorAll('.year-btn');
+      selectYear(years[years.length - 1], lastBtn[lastBtn.length - 1]);
+    }
+
+    function selectYear(year, btn) {
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.year-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + year).classList.add('active');
+    }
+
+    loadYears();
+  </script>
+</body>
+</html>
