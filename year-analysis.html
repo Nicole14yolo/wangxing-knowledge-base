@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度详情 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .year-header {
+      background: linear-gradient(135deg, var(--color-dark) 0%, #1a1a1a 100%);
+      color: white;
+      padding: 60px 0 40px;
+    }
+
+    .year-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .year-quote-count {
+      display: inline-block;
+      background: rgba(217, 119, 87, 0.2);
+      color: var(--color-orange);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .content-section {
+      margin: 40px 0;
+      padding: 32px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--color-light-gray);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--color-dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-light-gray);
+    }
+
+    .background-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-dark);
+    }
+
+    .dimensions-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .dimension-tag {
+      padding: 10px 20px;
+      background: var(--color-warm-bg);
+      border-radius: 24px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dimension-count {
+      background: var(--color-orange);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .insights-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .insights-content h3 {
+      font-family: var(--font-heading);
+      margin: 24px 0 12px;
+      color: var(--color-dark);
+    }
+
+    .insights-content p {
+      margin-bottom: 16px;
+    }
+
+    .quotes-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .quote-card {
+      padding: 20px;
+      background: var(--color-warm-bg);
+      border-radius: 12px;
+      border-left: 4px solid var(--color-orange);
+    }
+
+    .quote-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .link-to-corpus {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 12px 24px;
+      background: var(--color-orange);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-periods {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 32px 0;
+      padding: 16px;
+      background: var(--color-warm-bg);
+      border-radius: 12px;
+    }
+
+    .period-label {
+      font-size: 0.85rem;
+      color: var(--color-mid-gray);
+      padding: 4px 8px;
+    }
+
+    .year-nav-link {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--color-dark);
+      transition: all 0.2s;
+    }
+
+    .year-nav-link:hover {
+      background: var(--color-orange);
+      color: white;
+    }
+
+    .year-nav-link.current {
+      background: var(--color-dark);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+        <li><a href="models.html">思维模型</a></li>
+        <li><a href="quotes.html">金句</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="year-header" id="year-header">
+    <div class="container">
+      <a href="years.html" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">← 返回年度分析</a>
+      <h1 class="year-title" id="year-title">加载中...</h1>
+      <span class="year-quote-count" id="year-count"></span>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <!-- Year Navigation -->
+      <div class="nav-periods" id="year-nav"></div>
+
+      <!-- Background Section -->
+      <div class="content-section">
+        <h2 class="section-title">📅 商业大背景</h2>
+        <div class="background-text" id="background-content">加载中...</div>
+      </div>
+
+      <!-- Dimensions Section -->
+      <div class="content-section">
+        <h2 class="section-title">🎯 核心思想维度</h2>
+        <div class="dimensions-grid" id="dimensions-content"></div>
+      </div>
+
+      <!-- Insights Section -->
+      <div class="content-section">
+        <h2 class="section-title">💡 王兴核心洞察</h2>
+        <div class="insights-content" id="insights-content">
+          <p style="color: var(--color-mid-gray);">加载中...</p>
+        </div>
+      </div>
+
+      <!-- Sample Quotes -->
+      <div class="content-section">
+        <h2 class="section-title">💬 代表语录</h2>
+        <div class="quotes-preview" id="quotes-content"></div>
+        <a href="#" class="link-to-corpus" id="corpus-link">
+          查看该年全部语录 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="years.html">年度分析</a>
+          <a href="corpus.html">语料</a>
+          <a href="models.html">思维模型</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const year = urlParams.get('year');
+
+    if (!year) {
+      document.getElementById('year-title').textContent = '未指定年份';
+    } else {
+      loadYear(year);
+    }
+
+    async function loadYear(year) {
+      try {
+        const response = await fetch('data/years-full.json');
+        const data = await response.json();
+        const info = data[year];
+
+        if (!info) {
+          showNotFound(year);
+          return;
+        }
+
+        renderYear(info);
+        renderYearNav(year);
+      } catch (e) {
+        console.error('Failed to load year data:', e);
+        document.getElementById('year-title').textContent = '加载失败';
+      }
+    }
+
+    function renderYear(info) {
+      document.getElementById('year-title').textContent = info.title;
+      document.getElementById('year-count').textContent = `${info.quote_count} 条语录`;
+      document.getElementById('corpus-link').href = `year-detail.html?year=${info.year}`;
+
+      // Background
+      if (info.sections.background) {
+        document.getElementById('background-content').textContent = info.sections.background;
+      }
+
+      // Dimensions
+      if (info.sections.dimensions) {
+        document.getElementById('dimensions-content').innerHTML = info.sections.dimensions.map(d => `
+          <span class="dimension-tag">
+            ${d.name}
+            <span class="dimension-count">${d.count}</span>
+          </span>
+        `).join('');
+      }
+
+      // Insights (render markdown)
+      if (info.sections.insights) {
+        document.getElementById('insights-content').innerHTML = marked.parse(info.sections.insights);
+      } else {
+        document.getElementById('insights-content').innerHTML = '<p style="color: var(--color-mid-gray);">暂无详细洞察</p>';
+      }
+
+      // Sample quotes
+      if (info.sections.sample_quotes && info.sections.sample_quotes.length > 0) {
+        document.getElementById('quotes-content').innerHTML = info.sections.sample_quotes.map(q => `
+          <div class="quote-card">
+            <div class="quote-text">「${q}」</div>
+          </div>
+        `).join('');
+      } else {
+        document.getElementById('quotes-content').innerHTML = '<p style="color: var(--color-mid-gray);">暂无代表语录</p>';
+      }
+    }
+
+    function renderYearNav(currentYear) {
+      const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
+      const nav = document.getElementById('year-nav');
+
+      nav.innerHTML = years.map(y => `
+        <a href="year-analysis.html?year=${y}" class="year-nav-link ${y.toString() === currentYear ? 'current' : ''}">${y}</a>
+      `).join('');
+    }
+
+    function showNotFound(year) {
+      document.getElementById('year-title').textContent = `${year} 年`;
+      document.getElementById('background-content').textContent = '暂无该年份的详细分析';
+    }
+  </script>
+</body>
+</html>

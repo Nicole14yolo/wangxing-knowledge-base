@@ -1,0 +1,620 @@
+{
+  "2007": {
+    "year": "2007",
+    "title": "2007：全球视野的起点",
+    "quote_count": 902,
+    "sections": {
+      "background": "饭否创立元年，中国社交网络萌芽。iPhone 发布开启移动互联网序幕，王兴从校内/海内折戟后第三次创业。",
+      "dimensions": [
+        {
+          "name": "用户价值",
+          "count": 28
+        },
+        {
+          "name": "长期主义",
+          "count": 26
+        },
+        {
+          "name": "生活哲学",
+          "count": 25
+        },
+        {
+          "name": "互联网趋势",
+          "count": 19
+        },
+        {
+          "name": "产品思维",
+          "count": 17
+        },
+        {
+          "name": "全球视野",
+          "count": 11
+        },
+        {
+          "name": "学习与认知",
+          "count": 11
+        },
+        {
+          "name": "历史与文明",
+          "count": 7
+        }
+      ]
+    }
+  },
+  "2008": {
+    "year": "2008",
+    "title": "2008：寒冬中的产品信仰",
+    "quote_count": 180,
+    "sections": {
+      "background": "全球金融危机爆发，奥运年。饭否用户快速增长但商业模式模糊，国内SNS竞争白热化（开心网偷菜爆红）。",
+      "dimensions": [
+        {
+          "name": "用户价值",
+          "count": 11
+        },
+        {
+          "name": "学习与认知",
+          "count": 6
+        },
+        {
+          "name": "长期主义",
+          "count": 5
+        },
+        {
+          "name": "全球视野",
+          "count": 3
+        },
+        {
+          "name": "产品思维",
+          "count": 3
+        },
+        {
+          "name": "互联网趋势",
+          "count": 3
+        },
+        {
+          "name": "历史与文明",
+          "count": 2
+        },
+        {
+          "name": "组织与人才",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "2009": {
+    "year": "2009",
+    "title": "2009：关停与沉思",
+    "quote_count": 1681,
+    "sections": {
+      "background": "饭否于7月关停，微博上线。个人表达空间收缩，王兴转入「静默学习期」，大量阅读史书与传记。",
+      "dimensions": [
+        {
+          "name": "产品思维",
+          "count": 67
+        },
+        {
+          "name": "用户价值",
+          "count": 62
+        },
+        {
+          "name": "互联网趋势",
+          "count": 42
+        },
+        {
+          "name": "长期主义",
+          "count": 39
+        },
+        {
+          "name": "全球视野",
+          "count": 38
+        },
+        {
+          "name": "生活哲学",
+          "count": 36
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 33
+        },
+        {
+          "name": "历史与文明",
+          "count": 23
+        }
+      ]
+    }
+  },
+  "2010": {
+    "year": "2010",
+    "title": "2010：从信息到服务",
+    "quote_count": 577,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "产品思维",
+          "count": 28
+        },
+        {
+          "name": "全球视野",
+          "count": 20
+        },
+        {
+          "name": "长期主义",
+          "count": 19
+        },
+        {
+          "name": "生活哲学",
+          "count": 17
+        },
+        {
+          "name": "用户价值",
+          "count": 14
+        },
+        {
+          "name": "组织与人才",
+          "count": 11
+        },
+        {
+          "name": "历史与文明",
+          "count": 10
+        },
+        {
+          "name": "学习与认知",
+          "count": 10
+        }
+      ]
+    }
+  },
+  "2011": {
+    "year": "2011",
+    "title": "2011：生存与差异化",
+    "quote_count": 1207,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "产品思维",
+          "count": 67
+        },
+        {
+          "name": "用户价值",
+          "count": 50
+        },
+        {
+          "name": "生活哲学",
+          "count": 38
+        },
+        {
+          "name": "全球视野",
+          "count": 35
+        },
+        {
+          "name": "长期主义",
+          "count": 34
+        },
+        {
+          "name": "互联网趋势",
+          "count": 29
+        },
+        {
+          "name": "组织与人才",
+          "count": 26
+        },
+        {
+          "name": "历史与文明",
+          "count": 25
+        }
+      ]
+    }
+  },
+  "2012": {
+    "year": "2012",
+    "title": "2012：下沉与扩张",
+    "quote_count": 740,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "全球视野",
+          "count": 34
+        },
+        {
+          "name": "历史与文明",
+          "count": 32
+        },
+        {
+          "name": "长期主义",
+          "count": 28
+        },
+        {
+          "name": "产品思维",
+          "count": 27
+        },
+        {
+          "name": "用户价值",
+          "count": 27
+        },
+        {
+          "name": "生活哲学",
+          "count": 24
+        },
+        {
+          "name": "学习与认知",
+          "count": 24
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 17
+        }
+      ]
+    }
+  },
+  "2013": {
+    "year": "2013",
+    "title": "2013：边界试探",
+    "quote_count": 382,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "产品思维",
+          "count": 19
+        },
+        {
+          "name": "全球视野",
+          "count": 17
+        },
+        {
+          "name": "生活哲学",
+          "count": 17
+        },
+        {
+          "name": "长期主义",
+          "count": 15
+        },
+        {
+          "name": "历史与文明",
+          "count": 15
+        },
+        {
+          "name": "用户价值",
+          "count": 14
+        },
+        {
+          "name": "互联网趋势",
+          "count": 14
+        },
+        {
+          "name": "学习与认知",
+          "count": 10
+        }
+      ]
+    }
+  },
+  "2014": {
+    "year": "2014",
+    "title": "2014：资本与战争",
+    "quote_count": 312,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "产品思维",
+          "count": 16
+        },
+        {
+          "name": "生活哲学",
+          "count": 14
+        },
+        {
+          "name": "互联网趋势",
+          "count": 12
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 11
+        },
+        {
+          "name": "学习与认知",
+          "count": 10
+        },
+        {
+          "name": "全球视野",
+          "count": 8
+        },
+        {
+          "name": "用户价值",
+          "count": 8
+        },
+        {
+          "name": "长期主义",
+          "count": 7
+        }
+      ]
+    }
+  },
+  "2015": {
+    "year": "2015",
+    "title": "2015：整合与组织",
+    "quote_count": 670,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "全球视野",
+          "count": 31
+        },
+        {
+          "name": "长期主义",
+          "count": 30
+        },
+        {
+          "name": "历史与文明",
+          "count": 27
+        },
+        {
+          "name": "组织与人才",
+          "count": 26
+        },
+        {
+          "name": "产品思维",
+          "count": 25
+        },
+        {
+          "name": "用户价值",
+          "count": 22
+        },
+        {
+          "name": "生活哲学",
+          "count": 21
+        },
+        {
+          "name": "学习与认知",
+          "count": 21
+        }
+      ]
+    }
+  },
+  "2016": {
+    "year": "2016",
+    "title": "2016：多线作战",
+    "quote_count": 1595,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "全球视野",
+          "count": 115
+        },
+        {
+          "name": "生活哲学",
+          "count": 68
+        },
+        {
+          "name": "长期主义",
+          "count": 62
+        },
+        {
+          "name": "历史与文明",
+          "count": 60
+        },
+        {
+          "name": "产品思维",
+          "count": 53
+        },
+        {
+          "name": "用户价值",
+          "count": 53
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 43
+        },
+        {
+          "name": "学习与认知",
+          "count": 41
+        }
+      ]
+    }
+  },
+  "2017": {
+    "year": "2017",
+    "title": "2017：上市前的终极拷问",
+    "quote_count": 2766,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "全球视野",
+          "count": 117
+        },
+        {
+          "name": "长期主义",
+          "count": 110
+        },
+        {
+          "name": "生活哲学",
+          "count": 103
+        },
+        {
+          "name": "历史与文明",
+          "count": 100
+        },
+        {
+          "name": "产品思维",
+          "count": 67
+        },
+        {
+          "name": "组织与人才",
+          "count": 67
+        },
+        {
+          "name": "学习与认知",
+          "count": 64
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 63
+        }
+      ]
+    }
+  },
+  "2018": {
+    "year": "2018",
+    "title": "2018：从私募到公募",
+    "quote_count": 1449,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "长期主义",
+          "count": 78
+        },
+        {
+          "name": "全球视野",
+          "count": 75
+        },
+        {
+          "name": "历史与文明",
+          "count": 63
+        },
+        {
+          "name": "生活哲学",
+          "count": 57
+        },
+        {
+          "name": "用户价值",
+          "count": 44
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 44
+        },
+        {
+          "name": "产品思维",
+          "count": 43
+        },
+        {
+          "name": "学习与认知",
+          "count": 41
+        }
+      ]
+    }
+  },
+  "2019": {
+    "year": "2019",
+    "title": "2019：寒冬与克制",
+    "quote_count": 1242,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "历史与文明",
+          "count": 93
+        },
+        {
+          "name": "全球视野",
+          "count": 90
+        },
+        {
+          "name": "长期主义",
+          "count": 64
+        },
+        {
+          "name": "生活哲学",
+          "count": 54
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 48
+        },
+        {
+          "name": "学习与认知",
+          "count": 44
+        },
+        {
+          "name": "组织与人才",
+          "count": 38
+        },
+        {
+          "name": "用户价值",
+          "count": 36
+        }
+      ]
+    }
+  },
+  "2020": {
+    "year": "2020",
+    "title": "2020：危机与监管",
+    "quote_count": 221,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "全球视野",
+          "count": 20
+        },
+        {
+          "name": "长期主义",
+          "count": 20
+        },
+        {
+          "name": "历史与文明",
+          "count": 15
+        },
+        {
+          "name": "学习与认知",
+          "count": 10
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 9
+        },
+        {
+          "name": "产品思维",
+          "count": 5
+        },
+        {
+          "name": "生活哲学",
+          "count": 5
+        },
+        {
+          "name": "用户价值",
+          "count": 4
+        }
+      ]
+    }
+  },
+  "2021": {
+    "year": "2021",
+    "title": "2021：合规与再定位",
+    "quote_count": 270,
+    "sections": {
+      "dimensions": [
+        {
+          "name": "历史与文明",
+          "count": 12
+        },
+        {
+          "name": "全球视野",
+          "count": 9
+        },
+        {
+          "name": "长期主义",
+          "count": 9
+        },
+        {
+          "name": "用户价值",
+          "count": 8
+        },
+        {
+          "name": "组织与人才",
+          "count": 7
+        },
+        {
+          "name": "创新与颠覆",
+          "count": 6
+        },
+        {
+          "name": "资本与融资",
+          "count": 6
+        },
+        {
+          "name": "产品思维",
+          "count": 5
+        }
+      ]
+    }
+  }
+}
