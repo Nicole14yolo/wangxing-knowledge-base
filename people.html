@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人物档案 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html" class="active">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="detail-header">
+    <div class="container">
+      <h1>人物档案</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        王兴提及的 28 位关键人物及其思想启示
+      </p>
+    </div>
+  </div>
+
+  <!-- People Grid -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <!-- Filter Tags -->
+      <div style="margin-bottom: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <span class="card-badge" style="background-color: var(--color-orange); color: white;">全部</span>
+        <span class="card-badge">商业领袖</span>
+        <span class="card-badge">科技人物</span>
+        <span class="card-badge">历史人物</span>
+        <span class="card-badge">哲学家</span>
+      </div>
+
+      <div class="card-grid" id="people-grid">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // People data with categories
+    const people = [
+      // Business Leaders
+      { name: '乔布斯', enName: 'Steve Jobs', role: '苹果联合创始人', category: '商业领袖', count: 51, desc: '「隔空师徒」，产品之神的边界与审美 vs 效率的反思。' },
+      { name: '张一鸣', enName: 'Zhang Yiming', role: '字节跳动创始人', category: '商业领袖', count: 30, desc: 'TMD新格局，算法两种形态与组织进化对比。' },
+      { name: '马云', enName: 'Jack Ma', role: '阿里创始人', category: '商业领袖', count: 15, desc: '从合作到对立，平台 vs 垂直的战略分歧。' },
+      { name: '马化腾', enName: 'Pony Ma', role: '腾讯创始人', category: '商业领袖', count: 3, desc: '「白衣骑士」，控股但不控制的智慧。' },
+      { name: '贝索斯', enName: 'Jeff Bezos', role: '亚马逊创始人', category: '商业领袖', count: 12, desc: '长期主义典范，Day 1哲学深刻影响王兴。' },
+      { name: '盖茨', enName: 'Bill Gates', role: '微软/慈善家', category: '商业领袖', count: 31, desc: '从黑客到企业家再到慈善家的人生转型。' },
+      { name: '马斯克', enName: 'Elon Musk', role: 'Tesla/SpaceX创始人', category: '商业领袖', count: 4, desc: '第一性原理思维，质疑到仰望的转变。' },
+      { name: '巴菲特', enName: 'Warren Buffett', role: '伯克希尔董事长', category: '商业领袖', count: 12, desc: '价值投资教父，能力圈与长期持有。' },
+      { name: '孙正义', enName: 'Masayoshi Son', role: '软银创始人', category: '商业领袖', count: 14, desc: '300年愿景与激进投资风格的反思。' },
+      { name: '扎克伯格', enName: 'Mark Zuckerberg', role: 'Meta创始人', category: '商业领袖', count: 3, desc: '同代竞争者的镜像，产品人与管理者的对比。' },
+      { name: '刘强东', enName: 'Richard Liu', role: '京东创始人', category: '商业领袖', count: 9, desc: '同行者的竞争，重资产模式的启示。' },
+      { name: '雷军', enName: 'Lei Jun', role: '小米创始人', category: '商业领袖', count: 9, desc: '风口论 vs 能力论的哲学分歧。' },
+      { name: '丁磊', enName: 'William Ding', role: '网易创始人', category: '商业领袖', count: 2, desc: '佛系管理与多元化探索的代表。' },
+
+      // Tech Figures
+      { name: '王慧文', enName: 'Wang Huiwen', role: '美团联合创始人', category: '科技人物', count: 9, desc: '睡在上铺的兄弟，创始人互补的最佳案例。' },
+      { name: '佩奇', enName: 'Larry Page', role: 'Google联合创始人', category: '科技人物', count: 2, desc: '10倍思维与Alphabet组织创新。' },
+      { name: '布林', enName: 'Sergey Brin', role: 'Google联合创始人', category: '科技人物', count: 3, desc: '技术驱动与数据信仰。' },
+      { name: '俞军', enName: 'Yu Jun', role: '产品教父', category: '科技人物', count: 2, desc: '中国产品经理的启蒙者。' },
+      { name: '周鸿祎', enName: 'Zhou Hongyi', role: '360创始人', category: '科技人物', count: 3, desc: '免费安全模式与3Q大战的反思。' },
+      { name: '张朝阳', enName: 'Charles Zhang', role: '搜狐创始人', category: '科技人物', count: 2, desc: '初代互联网创业者的背影。' },
+
+      // Historical Figures
+      { name: '拿破仑', enName: 'Napoleon', role: '法国军事家', category: '历史人物', count: 14, desc: '军团制组织创新与集中优势兵力原则。' },
+      { name: '达尔文', enName: 'Charles Darwin', role: '博物学家', category: '历史人物', count: 7, desc: '进化论与商业竞争的类比。' },
+      { name: '邓小平', enName: 'Deng Xiaoping', role: '改革总设计师', category: '历史人物', count: 16, desc: '务实主义与摸着石头过河。' },
+      { name: '毛泽东', enName: 'Mao Zedong', role: '历史人物', category: '历史人物', count: 13, desc: '论持久战与农村包围城市的战略。' },
+
+      // Philosophers
+      { name: '孔子', enName: 'Confucius', role: '儒家创始人', category: '哲学家', count: 18, desc: '学习与教育的重要性，中庸之道。' },
+      { name: '芒格', enName: 'Charlie Munger', role: '伯克希尔副主席', category: '哲学家', count: 3, desc: '多元思维模型与逆向思考。' },
+      { name: '苏格拉底', enName: 'Socrates', role: '古希腊哲学家', category: '哲学家', count: 3, desc: '苏格拉底式提问与认识你自己。' },
+      { name: '亚里士多德', enName: 'Aristotle', role: '古希腊哲学家', category: '哲学家', count: 4, desc: '目的论与实践智慧。' }
+    ];
+
+    // Render people cards
+    const grid = document.getElementById('people-grid');
+    people.forEach(person => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.onclick = () => location.href = `person-detail.html?name=${encodeURIComponent(person.name)}`;
+      card.innerHTML = `
+        <div class="card-header">
+          <div>
+            <div class="card-title">${person.name}</div>
+            <div class="card-subtitle">${person.enName} · ${person.role}</div>
+          </div>
+          <span class="card-badge">${person.count}次</span>
+        </div>
+        <p class="card-description">${person.desc}</p>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

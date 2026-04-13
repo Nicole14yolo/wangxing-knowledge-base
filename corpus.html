@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>语料库 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html" class="active">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="detail-header">
+    <div class="container">
+      <h1>语料库</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        14,194 条饭否语录（2007-2021），按年份整理
+      </p>
+      <div class="detail-meta" style="margin-top: 20px;">
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">时间跨度</div>
+          <div class="detail-meta-value">15 年</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">总计</div>
+          <div class="detail-meta-value" id="total-count">加载中...</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-label">来源</div>
+          <div class="detail-meta-value">王兴饭否合集 PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year Grid -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-title">
+        <h2>按年份浏览</h2>
+        <p>点击年份查看该年所有饭否语录</p>
+      </div>
+
+      <div class="card-grid" id="year-grid">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year themes and stats
+    const yearThemes = {
+      2007: { theme: "全球视野的起点", desc: "饭否创立，社交网络萌芽" },
+      2008: { theme: "寒冬中的产品信仰", desc: "金融危机，商业模式反思" },
+      2009: { theme: "关停与沉思", desc: "饭否关停，微博上线" },
+      2010: { theme: "从信息到服务", desc: "美团创立，千团大战" },
+      2011: { theme: "生存与差异化", desc: "千团白热，微信诞生" },
+      2012: { theme: "下沉与扩张", desc: "团购整合，移动爆发" },
+      2013: { theme: "边界试探", desc: "O2O风口，外卖起步" },
+      2014: { theme: "资本与战争", desc: "滴滴补贴战，阿里IPO" },
+      2015: { theme: "整合与组织", desc: "美团点评合并" },
+      2016: { theme: "多线作战", desc: "共享单车，直播经济" },
+      2017: { theme: "上市前的终极拷问", desc: "字节崛起，美团试水出行" },
+      2018: { theme: "从私募到公募", desc: "美团上市，贸易战" },
+      2019: { theme: "寒冬与克制", desc: "增长焦虑，资本寒冬" },
+      2020: { theme: "危机与监管", desc: "疫情，社区团购，反垄断" },
+      2021: { theme: "合规与再定位", desc: "反垄断大潮，共同富裕" }
+    };
+
+    // Load corpus index
+    async function loadCorpusIndex() {
+      try {
+        const response = await fetch('data/corpus-index.json');
+        const data = await response.json();
+
+        document.getElementById('total-count').textContent = data.total.toLocaleString() + ' 条';
+
+        renderYearGrid(data.years, data.counts);
+      } catch (error) {
+        console.error('Failed to load corpus index:', error);
+        document.getElementById('year-grid').innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: var(--color-mid-gray);">
+            <p>加载语料索引失败</p>
+            <p style="font-size: 0.9rem;">请确保通过本地服务器访问此页面</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderYearGrid(years, counts) {
+      const grid = document.getElementById('year-grid');
+
+      years.forEach(year => {
+        const theme = yearThemes[year] || { theme: '未知', desc: '' };
+        const count = counts[year.toString()];
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = () => location.href = `year-detail.html?year=${year}`;
+        card.innerHTML = `
+          <div class="card-header">
+            <div>
+              <div class="card-title" style="font-size: 1.8rem;">${year}</div>
+              <div class="card-subtitle">${theme.theme}</div>
+            </div>
+            <span class="card-badge">${count.toLocaleString()} 条</span>
+          </div>
+          <p class="card-description">${theme.desc}</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px;">
+            <span style="font-size: 0.8rem; color: var(--color-mid-gray);">点击查看语录 →</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Load data
+    loadCorpusIndex();
+  </script>
+</body>
+</html>

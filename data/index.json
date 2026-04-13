@@ -1,0 +1,513 @@
+{
+  "companies": [
+    {
+      "name": "360",
+      "title": "360",
+      "type": "company",
+      "domain": "网络安全/搜索",
+      "region": "CN",
+      "mention_count": "15",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：网络安全/搜索 | **地区**：CN"
+    },
+    {
+      "name": "亚马逊",
+      "title": "亚马逊",
+      "type": "company",
+      "domain": "电商/云计算",
+      "region": "US",
+      "mention_count": "44",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：电商/云计算 | **地区**：US"
+    },
+    {
+      "name": "京东",
+      "title": "京东",
+      "type": "company",
+      "domain": "自营电商/物流",
+      "region": "CN",
+      "mention_count": "15",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：自营电商/物流 | **地区**：CN"
+    },
+    {
+      "name": "华为",
+      "title": "华为",
+      "type": "company",
+      "domain": "硬件/通信/企业服务",
+      "region": "CN",
+      "mention_count": "85",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：硬件/通信/企业服务 | **地区**：CN"
+    },
+    {
+      "name": "字节",
+      "title": "字节",
+      "type": "company",
+      "domain": "内容/AI/短视频",
+      "region": "CN",
+      "mention_count": "9",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：内容/AI/短视频 | **地区**：CN"
+    },
+    {
+      "name": "小米",
+      "title": "小米",
+      "type": "company",
+      "domain": "智能硬件/IoT",
+      "region": "CN",
+      "mention_count": "14",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：智能硬件/IoT | **地区**：CN"
+    },
+    {
+      "name": "微信",
+      "title": "微信",
+      "type": "company",
+      "domain": "社交/支付/小程序",
+      "region": "CN",
+      "mention_count": "74",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：社交/支付/小程序 | **地区**：CN"
+    },
+    {
+      "name": "微博",
+      "title": "微博",
+      "type": "company",
+      "domain": "社交媒体/内容平台",
+      "region": "CN",
+      "mention_count": "21",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：社交媒体/内容平台 | **地区**：CN"
+    },
+    {
+      "name": "微软",
+      "title": "微软",
+      "type": "company",
+      "domain": "软件/云计算",
+      "region": "US",
+      "mention_count": "53",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：软件/云计算 | **地区**：US"
+    },
+    {
+      "name": "快手",
+      "title": "快手",
+      "type": "company",
+      "domain": "短视频/直播",
+      "region": "CN",
+      "mention_count": "12",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：短视频/直播 | **地区**：CN"
+    },
+    {
+      "name": "拼多多",
+      "title": "拼多多",
+      "type": "company",
+      "domain": "社交电商",
+      "region": "CN",
+      "mention_count": "5",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：社交电商 | **地区**：CN"
+    },
+    {
+      "name": "携程",
+      "title": "携程",
+      "type": "company",
+      "domain": "在线旅游",
+      "region": "CN",
+      "mention_count": "15",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：在线旅游 | **地区**：CN"
+    },
+    {
+      "name": "新浪",
+      "title": "新浪",
+      "type": "company",
+      "domain": "门户/社交媒体",
+      "region": "CN",
+      "mention_count": "28",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：门户/社交媒体 | **地区**：CN"
+    },
+    {
+      "name": "滴滴",
+      "title": "滴滴",
+      "type": "company",
+      "domain": "出行服务",
+      "region": "CN",
+      "mention_count": "3",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：出行服务 | **地区**：CN"
+    },
+    {
+      "name": "百度",
+      "title": "百度",
+      "type": "company",
+      "domain": "搜索/AI",
+      "region": "CN",
+      "mention_count": "70",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：搜索/AI | **地区**：CN"
+    },
+    {
+      "name": "红杉资本",
+      "title": "红杉资本",
+      "type": "company",
+      "domain": "风险投资",
+      "region": "US/CN",
+      "mention_count": "18",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：风险投资 | **地区**：US/CN"
+    },
+    {
+      "name": "网易",
+      "title": "网易",
+      "type": "company",
+      "domain": "游戏/音乐/邮箱",
+      "region": "CN",
+      "mention_count": "19",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：游戏/音乐/邮箱 | **地区**：CN"
+    },
+    {
+      "name": "美团",
+      "title": "美团",
+      "type": "company",
+      "domain": "本地生活服务",
+      "region": "CN",
+      "mention_count": "100",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：本地生活服务 | **地区**：CN"
+    },
+    {
+      "name": "腾讯",
+      "title": "腾讯",
+      "type": "company",
+      "domain": "社交/游戏/投资",
+      "region": "CN",
+      "mention_count": "42",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：社交/游戏/投资 | **地区**：CN"
+    },
+    {
+      "name": "苹果",
+      "title": "苹果",
+      "type": "company",
+      "domain": "硬件/软件/服务",
+      "region": "US",
+      "mention_count": "120",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：硬件/软件/服务 | **地区**：US"
+    },
+    {
+      "name": "蚂蚁",
+      "title": "蚂蚁",
+      "type": "company",
+      "domain": "金融科技",
+      "region": "CN",
+      "mention_count": "13",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：金融科技 | **地区**：CN"
+    },
+    {
+      "name": "谷歌",
+      "title": "谷歌",
+      "type": "company",
+      "domain": "搜索/AI/云计算",
+      "region": "US",
+      "mention_count": "74",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：搜索/AI/云计算 | **地区**：US"
+    },
+    {
+      "name": "阿里",
+      "title": "阿里",
+      "type": "company",
+      "domain": "电商/云计算",
+      "region": "CN",
+      "mention_count": "41",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：电商/云计算 | **地区**：CN"
+    },
+    {
+      "name": "饭否",
+      "title": "饭否",
+      "type": "company",
+      "domain": "社交媒体",
+      "region": "CN",
+      "mention_count": "401",
+      "tags": "[公司, 实体档案]",
+      "summary": "**领域**：社交媒体 | **地区**：CN"
+    }
+  ],
+  "people": [
+    {
+      "name": "丁磊",
+      "title": "丁磊",
+      "type": "person",
+      "en_name": "William Ding",
+      "role": "网易创始人",
+      "mention_count": "2",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"William Ding\""
+    },
+    {
+      "name": "乔布斯",
+      "title": "乔布斯",
+      "type": "person",
+      "mention_count": "51",
+      "tags": "[person, 实体档案]",
+      "summary": "2009(5), 2010(1), 2011(10), 2012(5), 2013(5), 2015(1), 2016(2), 2017(14), 2019(5), 2020(2), 2021(1)"
+    },
+    {
+      "name": "亚里士多德",
+      "title": "亚里士多德",
+      "type": "person",
+      "en_name": "Aristotle",
+      "role": "古希腊哲学家",
+      "mention_count": "4",
+      "tags": "",
+      "summary": "**英文名**：Aristotle  |  **角色**：古希腊哲学家"
+    },
+    {
+      "name": "佩奇",
+      "title": "佩奇",
+      "type": "person",
+      "en_name": "Larry Page",
+      "role": "Google联合创始人",
+      "mention_count": "2",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Larry Page\""
+    },
+    {
+      "name": "俞军",
+      "title": "俞军",
+      "type": "person",
+      "en_name": "Yu Jun",
+      "role": "产品经理教父、滴滴前产品负责人",
+      "mention_count": "2",
+      "tags": "[人物, 实体档案]",
+      "summary": "role: \"产品经理教父、滴滴前产品负责人\""
+    },
+    {
+      "name": "刘强东",
+      "title": "刘强东",
+      "type": "person",
+      "en_name": "Richard Liu",
+      "role": "京东创始人",
+      "mention_count": "9",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Richard Liu\""
+    },
+    {
+      "name": "周鸿祎",
+      "title": "周鸿祎",
+      "type": "person",
+      "en_name": "Zhou Hongyi",
+      "role": "360创始人",
+      "mention_count": "3",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Zhou Hongyi\""
+    },
+    {
+      "name": "孔子",
+      "title": "孔子",
+      "type": "person",
+      "en_name": "Confucius",
+      "role": "儒家始祖",
+      "mention_count": "18",
+      "tags": "",
+      "summary": "**英文名**：Confucius  |  **角色**：儒家始祖"
+    },
+    {
+      "name": "孙正义",
+      "title": "孙正义",
+      "type": "person",
+      "en_name": "Masayoshi Son",
+      "role": "软银创始人、愿景基金掌门人",
+      "mention_count": "14",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Masayoshi Son\""
+    },
+    {
+      "name": "巴菲特",
+      "title": "巴菲特",
+      "type": "person",
+      "en_name": "Warren Buffett",
+      "role": "伯克希尔·哈撒韦董事长",
+      "mention_count": "12",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Warren Buffett\""
+    },
+    {
+      "name": "布林",
+      "title": "布林",
+      "type": "person",
+      "en_name": "Sergey Brin",
+      "role": "Google联合创始人",
+      "mention_count": "3",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Sergey Brin\""
+    },
+    {
+      "name": "张一鸣",
+      "title": "张一鸣",
+      "type": "person",
+      "mention_count": "30",
+      "tags": "[person, 实体档案]",
+      "summary": "2008(7), 2009(17), 2019(6)"
+    },
+    {
+      "name": "张朝阳",
+      "title": "张朝阳",
+      "type": "person",
+      "en_name": "Charles Zhang",
+      "role": "搜狐创始人",
+      "mention_count": "2",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Charles Zhang\""
+    },
+    {
+      "name": "扎克伯格",
+      "title": "扎克伯格",
+      "type": "person",
+      "en_name": "Mark Zuckerberg",
+      "role": "Meta（Facebook）创始人",
+      "mention_count": "3",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Mark Zuckerberg\""
+    },
+    {
+      "name": "拿破仑",
+      "title": "拿破仑",
+      "type": "person",
+      "en_name": "Napoleon",
+      "role": "历史人物",
+      "mention_count": "14",
+      "tags": "",
+      "summary": "**英文名**：Napoleon  |  **角色**：历史人物"
+    },
+    {
+      "name": "毛泽东",
+      "title": "毛泽东",
+      "type": "person",
+      "en_name": "Mao Zedong",
+      "role": "历史人物",
+      "mention_count": "13",
+      "tags": "",
+      "summary": "en_name: \"Mao Zedong\""
+    },
+    {
+      "name": "王慧文",
+      "title": "王慧文",
+      "type": "person",
+      "en_name": "Wang Huiwen",
+      "role": "美团联合创始人、原高级副总裁",
+      "mention_count": "9",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Wang Huiwen\""
+    },
+    {
+      "name": "盖茨",
+      "title": "盖茨",
+      "type": "person",
+      "en_name": "Bill Gates",
+      "role": "微软联合创始人、慈善家",
+      "mention_count": "31",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Bill Gates\""
+    },
+    {
+      "name": "芒格",
+      "title": "芒格",
+      "type": "person",
+      "en_name": "Charlie Munger",
+      "role": "伯克希尔副主席",
+      "mention_count": "3",
+      "tags": "",
+      "summary": "en_name: \"Charlie Munger\""
+    },
+    {
+      "name": "苏格拉底",
+      "title": "苏格拉底",
+      "type": "person",
+      "en_name": "Socrates",
+      "role": "古希腊哲学家",
+      "mention_count": "3",
+      "tags": "",
+      "summary": "**英文名**：Socrates  |  **角色**：古希腊哲学家"
+    },
+    {
+      "name": "贝索斯",
+      "title": "贝索斯",
+      "type": "person",
+      "en_name": "Jeff Bezos",
+      "role": "亚马逊创始人",
+      "mention_count": "12",
+      "tags": "[人物, 实体档案]",
+      "summary": "en_name: \"Jeff Bezos\""
+    },
+    {
+      "name": "达尔文",
+      "title": "达尔文",
+      "type": "person",
+      "en_name": "Charles Darwin",
+      "role": "进化论创始人",
+      "mention_count": "7",
+      "tags": "",
+      "summary": "en_name: \"Charles Darwin\""
+    },
+    {
+      "name": "邓小平",
+      "title": "邓小平",
+      "type": "person",
+      "en_name": "Deng Xiaoping",
+      "role": "历史人物",
+      "mention_count": "16",
+      "tags": "",
+      "summary": "en_name: \"Deng Xiaoping\""
+    },
+    {
+      "name": "雷军",
+      "title": "雷军",
+      "type": "person",
+      "en_name": "Lei Jun",
+      "role": "小米创始人",
+      "mention_count": "9",
+      "tags": "[人物, 实体档案]",
+      "summary": "雷军，小米集团创始人，「风口论」提出者。从金山软件到小米，雷军经历了从软件到硬件、从ToB到ToC的完整转型。以「性价比」策略和粉丝运营闻名。"
+    },
+    {
+      "name": "马云",
+      "title": "马云",
+      "type": "person",
+      "mention_count": "15",
+      "tags": "[person, 实体档案]",
+      "summary": "2011(2), 2012(1), 2015(2), 2016(3), 2017(5), 2018(1), 2019(1)"
+    },
+    {
+      "name": "马化腾",
+      "title": "马化腾",
+      "type": "person",
+      "mention_count": "3",
+      "tags": "[person, 实体档案]",
+      "summary": "2009(1), 2012(1), 2016(1)"
+    },
+    {
+      "name": "马斯克",
+      "title": "马斯克",
+      "type": "person",
+      "en_name": "Elon Musk",
+      "role": "Tesla/SpaceX/Neuralink 创始人",
+      "mention_count": "4",
+      "tags": "[人物, 实体档案]",
+      "summary": "role: \"Tesla/SpaceX/Neuralink 创始人\""
+    }
+  ],
+  "stats": {
+    "total_companies": 24,
+    "total_people": 27,
+    "total_entries": 14194
+  }
+}

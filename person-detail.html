@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人物详情 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html" class="active">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="detail-header" id="detail-header">
+    <div class="container">
+      <a href="people.html" style="color: var(--color-mid-gray); font-size: 0.9rem;">← 返回人物列表</a>
+      <h1 id="person-name" style="margin-top: 16px;">加载中...</h1>
+      <div class="detail-meta" id="person-meta">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Content -->
+  <section class="detail-content">
+    <div class="container">
+      <div class="markdown-body" id="markdown-content">
+        <p style="color: var(--color-mid-gray);">正在加载内容...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Parse URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const personName = params.get('name');
+
+    if (!personName) {
+      document.getElementById('person-name').textContent = '未指定人物姓名';
+      document.getElementById('markdown-content').innerHTML = '<p>请在URL中指定人物姓名，例如：?name=乔布斯</p>';
+    } else {
+      document.getElementById('person-name').textContent = personName;
+
+      // Try to load the markdown file
+      const possiblePaths = [
+        `../Documents/obsidian趣味导图/王兴饭否语录库/02_智库/实体/人物/${personName}.md`,
+        `data/people/${personName}.md`,
+        `people/${personName}.md`
+      ];
+
+      let loaded = false;
+
+      async function tryLoad(path) {
+        try {
+          const response = await fetch(path);
+          if (response.ok) {
+            const markdown = await response.text();
+            renderContent(markdown);
+            loaded = true;
+            return true;
+          }
+        } catch (e) {
+          console.log('Failed to load from:', path);
+        }
+        return false;
+      }
+
+      async function loadContent() {
+        for (const path of possiblePaths) {
+          if (await tryLoad(path)) return;
+        }
+        // If all paths fail, show demo content
+        showDemoContent();
+      }
+
+      function renderContent(markdown) {
+        // Extract metadata from frontmatter
+        const yamlMatch = markdown.match(/---\n([\s\S]*?)\n---/);
+        let meta = {};
+        if (yamlMatch) {
+          const yaml = yamlMatch[1];
+          meta.enName = yaml.match(/en_name:\s*"(.+?)"/)?.[1];
+          meta.role = yaml.match(/role:\s*"(.+?)"/)?.[1];
+          meta.count = yaml.match(/mention_count:\s*(\d+)/)?.[1];
+        }
+
+        // Render meta
+        const metaDiv = document.getElementById('person-meta');
+        metaDiv.innerHTML = `
+          ${meta.enName ? `
+            <div class="detail-meta-item">
+              <div class="detail-meta-label">英文名</div>
+              <div class="detail-meta-value">${meta.enName}</div>
+            </div>
+          ` : ''}
+          ${meta.role ? `
+            <div class="detail-meta-item">
+              <div class="detail-meta-label">身份</div>
+              <div class="detail-meta-value">${meta.role}</div>
+            </div>
+          ` : ''}
+          ${meta.count ? `
+            <div class="detail-meta-item">
+              <div class="detail-meta-label">提及次数</div>
+              <div class="detail-meta-value">${meta.count} 次</div>
+            </div>
+          ` : ''}
+        `;
+
+        // Render markdown content (remove frontmatter)
+        const content = markdown.replace(/---\n[\s\S]*?\n---/, '').trim();
+        document.getElementById('markdown-content').innerHTML = marked.parse(content);
+      }
+
+      function showDemoContent() {
+        document.getElementById('person-meta').innerHTML = `
+          <div class="detail-meta-item">
+            <div class="detail-meta-value" style="color: var(--color-mid-gray);">
+              演示模式 - 实际部署后将从服务器加载 Markdown 文件
+            </div>
+          </div>
+        `;
+
+        // Demo content based on person
+        const demoContent = getDemoContent(personName);
+        document.getElementById('markdown-content').innerHTML = marked.parse(demoContent);
+      }
+
+      function getDemoContent(name) {
+        const demos = {
+          '乔布斯': `## 简介
+
+史蒂夫·乔布斯（Steve Jobs），苹果联合创始人，曾长期占据世界科技行业巅峰。以产品审美、现实扭曲力场、封闭生态系统闻名。
+
+## 王兴与乔布斯的故事
+
+王兴与乔布斯的关系是「隔空师徒」。两人从未见面，但乔布斯是王兴饭否提及次数最多的人物（51次）。
+
+### 时间线：
+
+**2009-2011：早期推崇期**
+王兴密集引用苹果产品、乔布斯的演讲，视其为产品审美的终极标准。
+
+**2011.10.06：乔布斯去世**
+王兴记录：「八年前一早醒来在手机上看到乔布斯去世的消息时，我在台北长荣桂冠酒店的床上。」
+
+**2012-2015：反思期**
+王兴开始意识到「乔布斯是不可复制的」，美团的地推铁军模式与苹果的精英产品路线截然不同。
+
+**2016-2021：批判继承期**
+王兴对比乔布斯与马斯克，认为马斯克更猛——显示他将乔布斯「拉下神坛」后重新定位。
+
+## 王兴相关精选观点
+
+> 如果没有乔布斯，智能手机的普及会晚多少年？如果没有马斯克，智能电动车的普及会晚多少年？一个朋友说他对比这两个问题之后认为还是马斯克更猛一点。
+> —— 2021-02-02
+>
+
+## 王兴得到的启示
+
+- **产品之神的边界**：乔布斯证明了极致产品可以颠覆行业，但也证明了这种路线无法规模化复制
+- **现实扭曲力场是把双刃剑**：乔布斯对用户需求的「预见」建立在封闭生态上
+- **审美 finite，效率 infinite**：乔布斯是 artist-founder 的巅峰，王兴更推崇「苦活累活」的效率执行哲学
+
+## 给读者的参考价值
+
+- 对于产品经理：学习乔布斯的「用户不知道自己想要什么」直觉
+- 对于创业者：乔布斯证明了一个人的审美可以改变世界，但美团证明了一群普通人的效率可以服务世界
+- 对于投资者：乔布斯型企业估值应包含「关键人风险」折价`,
+
+          '张一鸣': `## 简介
+
+张一鸣，字节跳动创始人，TMD新贵之一。以算法推荐、延迟满足感、Context not Control 管理理念闻名。
+
+## 王兴与张一鸣的故事
+
+王兴与张一鸣是「福建帮」双雄，两人同龄（都生于1983），同为清华校友。
+
+## 王兴相关精选观点
+
+> 延迟满足感。
+> —— 多次提及
+>
+
+## 王兴得到的启示
+
+- **算法的两种形态**：张一鸣用算法分发信息（内容），王兴用算法分发服务（外卖）
+- **组织能力的互补性**：字节是「Context not Control」的极致，美团是「科学管理+地推铁军」的混合
+- **边界问题的共鸣**：两人都在回答「我是谁、我不是谁」
+
+## 给读者的参考价值
+
+- 对于组织设计者：对比字节与美团的组织进化路径
+- 对于竞争策略者：观察王兴如何定义「非对称竞争」`};
+
+        return demos[name] || `## ${name}
+
+此档案的详细内容需要从服务器加载 Markdown 文件。
+
+请确保：
+1. 网站部署在支持文件访问的服务器上
+2. Markdown 文件路径正确配置
+3. 或使用静态网站生成器（如 11ty）预渲染所有页面`;
+      }
+
+      loadContent();
+    }
+  </script>
+</body>
+</html>

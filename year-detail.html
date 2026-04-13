@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度语录 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html" class="active">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="detail-header" id="detail-header">
+    <div class="container">
+      <a href="corpus.html" style="color: var(--color-mid-gray); font-size: 0.9rem;">← 返回语料库</a>
+      <h1 id="year-title" style="margin-top: 16px;">加载中...</h1>
+      <div class="detail-meta" id="year-meta">
+        <div class="detail-meta-item">
+          <div class="detail-meta-value" style="color: var(--color-mid-gray);">
+            正在加载数据...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <!-- Pagination Controls -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+        <div id="pagination-info" style="color: var(--color-mid-gray);">
+          加载中...
+        </div>
+        <div id="pagination-controls" style="display: flex; gap: 8px;">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+
+      <!-- Quotes List -->
+      <div id="quotes-list" style="max-width: 800px; margin: 0 auto;">
+        <!-- Will be populated by JS -->
+      </div>
+
+      <!-- Pagination Bottom -->
+      <div style="display: flex; justify-content: center; margin-top: 48px;">
+        <div id="pagination-bottom" style="display: flex; gap: 8px;">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const ITEMS_PER_PAGE = 50;
+
+    const yearThemes = {
+      2007: { theme: "全球视野的起点", bg: "饭否创立，社交网络萌芽" },
+      2008: { theme: "寒冬中的产品信仰", bg: "金融危机，商业模式反思" },
+      2009: { theme: "关停与沉思", bg: "饭否关停，微博上线" },
+      2010: { theme: "从信息到服务", bg: "美团创立，千团大战" },
+      2011: { theme: "生存与差异化", bg: "千团白热，微信诞生" },
+      2012: { theme: "下沉与扩张", bg: "团购整合，移动爆发" },
+      2013: { theme: "边界试探", bg: "O2O风口，外卖起步" },
+      2014: { theme: "资本与战争", bg: "滴滴补贴战，阿里IPO" },
+      2015: { theme: "整合与组织", bg: "美团点评合并" },
+      2016: { theme: "多线作战", bg: "共享单车，直播经济" },
+      2017: { theme: "上市前的终极拷问", bg: "字节崛起，美团试水出行" },
+      2018: { theme: "从私募到公募", bg: "美团上市，贸易战" },
+      2019: { theme: "寒冬与克制", bg: "增长焦虑，资本寒冬" },
+      2020: { theme: "危机与监管", bg: "疫情，社区团购，反垄断" },
+      2021: { theme: "合规与再定位", bg: "反垄断大潮，共同富裕" }
+    };
+
+    // Parse URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const YEAR = parseInt(params.get('year'));
+    let CURRENT_PAGE = parseInt(params.get('page')) || 1;
+
+    if (!YEAR) {
+      document.getElementById('year-title').textContent = '未指定年份';
+      document.getElementById('quotes-list').innerHTML = '<p>请在URL中指定年份，例如：?year=2011</p>';
+    } else {
+      initPage();
+    }
+
+    async function initPage() {
+      const theme = yearThemes[YEAR] || { theme: '', bg: '' };
+      document.getElementById('year-title').textContent = `${YEAR} · ${theme.theme}`;
+      document.title = `${YEAR} ${theme.theme} | 王兴饭否语录`;
+
+      try {
+        const response = await fetch(`data/${YEAR}.json`);
+        const entries = await response.json();
+
+        // Update meta
+        document.getElementById('year-meta').innerHTML = `
+          <div class="detail-meta-item">
+            <div class="detail-meta-label">语录总数</div>
+            <div class="detail-meta-value">${entries.length} 条</div>
+          </div>
+          <div class="detail-meta-item">
+            <div class="detail-meta-label">时代背景</div>
+            <div class="detail-meta-value">${theme.bg}</div>
+          </div>
+        `;
+
+        renderQuotes(entries, CURRENT_PAGE);
+      } catch (error) {
+        console.error('Failed to load data:', error);
+        document.getElementById('quotes-list').innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; color: var(--color-mid-gray);">
+            <h3>加载数据失败</h3>
+            <p>请确保通过本地服务器访问此页面（http://localhost:8000）</p>
+            <p style="font-size: 0.9rem; margin-top: 16px;">
+              直接在浏览器打开文件会有 CORS 限制，无法读取本地 JSON
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    function renderQuotes(entries, page) {
+      const totalPages = Math.ceil(entries.length / ITEMS_PER_PAGE);
+      const start = (page - 1) * ITEMS_PER_PAGE;
+      const end = Math.min(start + ITEMS_PER_PAGE, entries.length);
+      const pageEntries = entries.slice(start, end);
+
+      // Update pagination info
+      document.getElementById('pagination-info').textContent =
+        `第 ${start + 1} - ${end} 条，共 ${entries.length} 条`;
+
+      // Render pagination
+      renderPagination(page, totalPages);
+
+      // Render quotes
+      const list = document.getElementById('quotes-list');
+      list.innerHTML = '';
+
+      pageEntries.forEach((entry, index) => {
+        const quoteEl = document.createElement('div');
+        quoteEl.style.cssText = `
+          padding: 24px 0;
+          border-bottom: 1px solid var(--color-light-gray);
+        `;
+
+        quoteEl.innerHTML = `
+          <div style="display: flex; gap: 16px;">
+            <div style="flex-shrink: 0;">
+              <div style="
+                width: 40px;
+                height: 40px;
+                background-color: var(--color-light-gray);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-heading);
+                font-weight: 600;
+                color: var(--color-mid-gray);
+              ">${start + index + 1}</div>
+            </div>
+            <div style="flex: 1;">
+              <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 12px;">
+                ${escapeHtml(entry.content)}
+              </p>
+              <div style="display: flex; gap: 16px; font-size: 0.85rem; color: var(--color-mid-gray);">
+                <span>${entry.date}${entry.time ? ' ' + entry.time : ''}</span>
+                ${entry.has_forward ? '<span style="color: var(--color-orange);">含转发</span>' : ''}
+                ${entry.is_reply ? '<span>回复</span>' : ''}
+              </div>
+            </div>
+          </div>
+        `;
+
+        list.appendChild(quoteEl);
+      });
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderPagination(currentPage, totalPages) {
+      const controlsTop = document.getElementById('pagination-controls');
+      const controlsBottom = document.getElementById('pagination-bottom');
+
+      const generatePaginationHTML = () => {
+        let html = '';
+
+        // Previous button
+        html += `<button
+          onclick="changePage(${currentPage - 1})"
+          class="btn ${currentPage === 1 ? 'btn-secondary' : 'btn-primary'}"
+          ${currentPage === 1 ? 'disabled style="opacity: 0.5;"' : ''}
+        >← 上一页</button>`;
+
+        // Page info
+        html += `<span style="padding: 12px 16px; font-family: var(--font-heading);">
+          ${currentPage} / ${totalPages}
+        </span>`;
+
+        // Next button
+        html += `<button
+          onclick="changePage(${currentPage + 1})"
+          class="btn ${currentPage === totalPages ? 'btn-secondary' : 'btn-primary'}"
+          ${currentPage === totalPages ? 'disabled style="opacity: 0.5;"' : ''}
+        >下一页 →</button>`;
+
+        return html;
+      };
+
+      controlsTop.innerHTML = generatePaginationHTML();
+      controlsBottom.innerHTML = generatePaginationHTML();
+    }
+
+    function changePage(newPage) {
+      const url = new URL(window.location);
+      url.searchParams.set('page', newPage);
+      window.history.pushState({}, '', url);
+      CURRENT_PAGE = newPage;
+      initPage();
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', () => {
+      const params = new URLSearchParams(window.location.search);
+      CURRENT_PAGE = parseInt(params.get('page')) || 1;
+      initPage();
+    });
+  </script>
+</body>
+</html>

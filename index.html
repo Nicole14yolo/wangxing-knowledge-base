@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王兴饭否思想库 | Wangxing Fanfou Knowledge Base</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+      <a href="https://github.com" class="btn btn-secondary" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>王兴饭否思想库</h1>
+      <p class="subtitle">
+        收录王兴 2007–2021 年在饭否发布的 <strong>14,194</strong> 条语录，
+        结构化为三层知识图谱，洞察中国互联网一代创业者的思想演变。
+      </p>
+      <a href="companies.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 14px 32px;">
+        探索档案 →
+      </a>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">14,194</div>
+          <div class="stat-label">语录条目</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24</div>
+          <div class="stat-label">公司档案</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">28</div>
+          <div class="stat-label">人物档案</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">16</div>
+          <div class="stat-label">思维模型</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section category-section" id="structure">
+    <div class="container">
+      <div class="section-title">
+        <h2>三层知识架构</h2>
+        <p>将散乱语录结构化为可检索、可分析的智慧宝库</p>
+      </div>
+
+      <div class="category-grid">
+        <!-- Layer 1: Source -->
+        <div class="category-card">
+          <div class="category-icon">📚</div>
+          <h3>01 · 语料层</h3>
+          <p>原始语录数据按年份整理，溯源至 PDF 原始文档，保留最完整的第一手资料。</p>
+          <a href="corpus.html" class="btn btn-primary">浏览语料</a>
+        </div>
+
+        <!-- Layer 2: Insights -->
+        <div class="category-card">
+          <div class="category-icon">💡</div>
+          <h3>02 · 智库层</h3>
+          <p>年度商业分析、思维模型图谱、实体网络关系，提炼核心洞察与启示。</p>
+          <a href="companies.html" class="btn btn-primary">探索智库</a>
+        </div>
+
+        <!-- Layer 3: Application -->
+        <div class="category-card">
+          <div class="category-icon">🎯</div>
+          <h3>03 · 应用层</h3>
+          <p>金句精选、书影音推荐、关系图谱，场景化输出方便查阅与引用。</p>
+          <a href="#" class="btn btn-primary">查看应用</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Companies -->
+  <section class="section" id="companies">
+    <div class="container">
+      <div class="section-title">
+        <h2>精选公司档案</h2>
+        <p>王兴提及的公司及其得到的商业启示</p>
+      </div>
+
+      <div class="card-grid" id="featured-companies">
+        <!-- Dynamic content will be loaded here -->
+        <div class="card" onclick="location.href='company-detail.html?name=美团'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">美团</div>
+              <div class="card-subtitle">本地生活服务</div>
+            </div>
+            <span class="card-badge">100次提及</span>
+          </div>
+          <p class="card-description">从团购到外卖到本地生活，王兴对自己创立的公司最深刻的反思。</p>
+        </div>
+
+        <div class="card" onclick="location.href='company-detail.html?name=苹果'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">苹果</div>
+              <div class="card-subtitle">消费电子</div>
+            </div>
+            <span class="card-badge">120次提及</span>
+          </div>
+          <p class="card-description">产品审美的标杆，但封闭生态无法复制到服务业。</p>
+        </div>
+
+        <div class="card" onclick="location.href='company-detail.html?name=亚马逊'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">亚马逊</div>
+              <div class="card-subtitle">电商/云计算</div>
+            </div>
+            <span class="card-badge">44次提及</span>
+          </div>
+          <p class="card-description">长期主义的典范，基础设施即护城河。</p>
+        </div>
+
+        <div class="card" onclick="location.href='company-detail.html?name=腾讯'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">腾讯</div>
+              <div class="card-subtitle">社交/投资</div>
+            </div>
+            <span class="card-badge">42次提及</span>
+          </div>
+          <p class="card-description">「不干预」的投资文化，控股但不控制。</p>
+        </div>
+
+        <div class="card" onclick="location.href='company-detail.html?name=阿里'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">阿里</div>
+              <div class="card-subtitle">电商/云计算</div>
+            </div>
+            <span class="card-badge">41次提及</span>
+          </div>
+          <p class="card-description">平台 vs 垂直的路线之争，从合作到全面对抗。</p>
+        </div>
+
+        <div class="card" onclick="location.href='company-detail.html?name=百度'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">百度</div>
+              <div class="card-subtitle">搜索/AI</div>
+            </div>
+            <span class="card-badge">70次提及</span>
+          </div>
+          <p class="card-description">商业模式的时代性，搜索在移动端被分流。</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="companies.html" class="btn btn-secondary">查看全部 24 个公司 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured People -->
+  <section class="section category-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>精选人物档案</h2>
+        <p>王兴提及的商业领袖与思想启发者</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card" onclick="location.href='person-detail.html?name=乔布斯'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">乔布斯</div>
+              <div class="card-subtitle">Steve Jobs · 苹果联合创始人</div>
+            </div>
+            <span class="card-badge">51次</span>
+          </div>
+          <p class="card-description">「隔空师徒」，产品之神的边界与审美 vs 效率的反思。</p>
+        </div>
+
+        <div class="card" onclick="location.href='person-detail.html?name=张一鸣'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">张一鸣</div>
+              <div class="card-subtitle">字节跳动创始人</div>
+            </div>
+            <span class="card-badge">30次</span>
+          </div>
+          <p class="card-description">TMD新格局，算法两种形态与组织进化对比。</p>
+        </div>
+
+        <div class="card" onclick="location.href='person-detail.html?name=贝索斯'">
+          <div class="card-header">
+            <div>
+              <div class="card-title">贝索斯</div>
+              <div class="card-subtitle">Jeff Bezos · 亚马逊创始人</div>
+            </div>
+            <span class="card-badge">12次</span>
+          </div>
+          <p class="card-description">长期主义典范，Day 1哲学深刻影响王兴。</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="people.html" class="btn btn-secondary">查看全部人物 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section class="section" id="insights">
+    <div class="container">
+      <div class="section-title">
+        <h2>智库分析</h2>
+        <p>从 14,194 条语录中提炼核心洞察</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">年度商业分析</div>
+              <div class="card-subtitle">2007-2021</div>
+            </div>
+          </div>
+          <p class="card-description">每年商业大背景 + 王兴核心思想结论，分五个阶段还原思想演变。</p>
+          <a href="#" style="color: var(--color-orange);">查看分析 →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">思维模型</div>
+              <div class="card-subtitle">16个核心概念</div>
+            </div>
+          </div>
+          <p class="card-description">全球视野、长期主义、产品思维、用户价值等思维维度全景图谱。</p>
+          <a href="#" style="color: var(--color-orange);">探索模型 →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">思维演变时间轴</div>
+              <div class="card-subtitle">概念×年份热力图</div>
+            </div>
+          </div>
+          <p class="card-description">16个概念在2007-2021年的频率变化与三大转折点分析。</p>
+          <a href="#" style="color: var(--color-orange);">查看时间轴 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+          <a href="#">关于</a>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 30px; color: var(--color-mid-gray); font-size: 0.9rem;">
+        基于 Anthropic 品牌风格设计 · 数据来源于王兴饭否 2007-2021
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

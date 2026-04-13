@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Search specific styles */
+    .search-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 20px 60px 20px 24px;
+      font-size: 1.2rem;
+      border: 2px solid var(--color-light-gray);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-orange);
+      box-shadow: 0 0 0 4px rgba(217, 119, 87, 0.1);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 12px 24px;
+      background: var(--color-orange);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: var(--font-heading);
+    }
+
+    .search-btn:hover {
+      background: var(--color-orange-dark);
+    }
+
+    .search-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .search-filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.9rem;
+      color: var(--color-mid-gray);
+      font-family: var(--font-heading);
+    }
+
+    .filter-select {
+      padding: 8px 16px;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: white;
+      cursor: pointer;
+    }
+
+    .search-stats {
+      padding: 16px 20px;
+      background: var(--color-warm-bg);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-progress {
+      width: 100%;
+      height: 4px;
+      background: var(--color-light-gray);
+      border-radius: 2px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+
+    .search-progress-bar {
+      height: 100%;
+      background: var(--color-orange);
+      transition: width 0.3s;
+    }
+
+    .quote-result {
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--color-light-gray);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quote-result:hover {
+      border-color: var(--color-orange);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .quote-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .quote-content mark {
+      background: rgba(217, 119, 87, 0.3);
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    .quote-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--color-mid-gray);
+      flex-wrap: wrap;
+    }
+
+    .quote-year {
+      color: var(--color-orange);
+      font-weight: 600;
+    }
+
+    .quote-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .quote-tag {
+      padding: 2px 8px;
+      background: var(--color-warm-bg);
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .quick-links {
+      margin-top: 40px;
+    }
+
+    .quick-links h3 {
+      font-size: 1rem;
+      color: var(--color-mid-gray);
+      margin-bottom: 16px;
+      font-family: var(--font-heading);
+    }
+
+    .quick-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .quick-tag {
+      padding: 8px 16px;
+      background: var(--color-warm-bg);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .quick-tag:hover {
+      background: rgba(217, 119, 87, 0.2);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--color-mid-gray);
+    }
+
+    .no-results-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--color-light-gray);
+      border-top-color: var(--color-orange);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .load-more {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--color-light-gray);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-heading);
+    }
+
+    .page-btn:hover {
+      border-color: var(--color-orange);
+    }
+
+    .page-btn.active {
+      background: var(--color-orange);
+      color: white;
+      border-color: var(--color-orange);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html" class="active">搜索</a></li>
+      </ul>
+      <div style="color: var(--color-mid-gray); font-size: 0.9rem;">14,194 条语录</div>
+    </div>
+  </nav>
+
+  <!-- Search Header -->
+  <div class="detail-header" style="padding: 60px 0 40px;">
+    <div class="container">
+      <h1>搜索语录</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        在 14,194 条饭否语录中搜索关键词
+      </p>
+    </div>
+  </div>
+
+  <!-- Search Container -->
+  <div class="search-container">
+    <!-- Search Box -->
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        id="search-input"
+        placeholder="输入关键词（如：美团、乔布斯、长期主义...）"
+        autocomplete="off"
+      >
+      <button class="search-btn" id="search-btn" onclick="performSearch()">搜索</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="search-filters">
+      <div class="filter-group">
+        <span class="filter-label">年份:</span>
+        <select class="filter-select" id="year-filter">
+          <option value="">全部年份</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">每页:</span>
+        <select class="filter-select" id="page-size">
+          <option value="20">20 条</option>
+          <option value="50" selected>50 条</option>
+          <option value="100">100 条</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="search-progress" id="progress-bar" style="display: none;">
+      <div class="search-progress-bar" id="progress-fill" style="width: 0%;"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="search-stats" id="search-stats" style="display: none;">
+      <span id="stats-text">搜索中...</span>
+      <span id="stats-time"></span>
+    </div>
+
+    <!-- Results -->
+    <div id="search-results"></div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+
+    <!-- Quick Links -->
+    <div class="quick-links" id="quick-links">
+      <h3>热门搜索</h3>
+      <div class="quick-tags">
+        <span class="quick-tag" onclick="quickSearch('美团')">美团</span>
+        <span class="quick-tag" onclick="quickSearch('乔布斯')">乔布斯</span>
+        <span class="quick-tag" onclick="quickSearch('长期主义')">长期主义</span>
+        <span class="quick-tag" onclick="quickSearch('产品')">产品</span>
+        <span class="quick-tag" onclick="quickSearch('竞争')">竞争</span>
+        <span class="quick-tag" onclick="quickSearch('管理')">管理</span>
+        <span class="quick-tag" onclick="quickSearch('战略')">战略</span>
+        <span class="quick-tag" onclick="quickSearch('创新')">创新</span>
+        <span class="quick-tag" onclick="quickSearch('亚马逊')">亚马逊</span>
+        <span class="quick-tag" onclick="quickSearch('苹果')">苹果</span>
+        <span class="quick-tag" onclick="quickSearch('贝索斯')">贝索斯</span>
+        <span class="quick-tag" onclick="quickSearch('张一鸣')">张一鸣</span>
+      </div>
+
+      <h3 style="margin-top: 24px;">按公司搜索</h3>
+      <div class="quick-tags">
+        <span class="quick-tag" onclick="quickSearch('美团')">美团</span>
+        <span class="quick-tag" onclick="quickSearch('阿里')">阿里</span>
+        <span class="quick-tag" onclick="quickSearch('腾讯')">腾讯</span>
+        <span class="quick-tag" onclick="quickSearch('百度')">百度</span>
+        <span class="quick-tag" onclick="quickSearch('京东')">京东</span>
+        <span class="quick-tag" onclick="quickSearch('字节')">字节</span>
+        <span class="quick-tag" onclick="quickSearch('亚马逊')">亚马逊</span>
+        <span class="quick-tag" onclick="quickSearch('谷歌')">谷歌</span>
+      </div>
+
+      <h3 style="margin-top: 24px;">按人物搜索</h3>
+      <div class="quick-tags">
+        <span class="quick-tag" onclick="quickSearch('乔布斯')">乔布斯</span>
+        <span class="quick-tag" onclick="quickSearch('贝索斯')">贝索斯</span>
+        <span class="quick-tag" onclick="quickSearch('张一鸣')">张一鸣</span>
+        <span class="quick-tag" onclick="quickSearch('马云')">马云</span>
+        <span class="quick-tag" onclick="quickSearch('雷军')">雷军</span>
+        <span class="quick-tag" onclick="quickSearch('巴菲特')">巴菲特</span>
+        <span class="quick-tag" onclick="quickSearch('王兴')">王兴</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="search.html">搜索</a>
+          <a href="corpus.html">语料</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Global state
+    let allEntries = [];
+    let searchResults = [];
+    let currentPage = 1;
+    let isSearching = false;
+
+    const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
+
+    // Cache for loaded data
+    const yearCache = {};
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for URL params
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q');
+      if (query) {
+        document.getElementById('search-input').value = query;
+        performSearch();
+      }
+
+      // Enter key to search
+      document.getElementById('search-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+      });
+    });
+
+    function quickSearch(keyword) {
+      document.getElementById('search-input').value = keyword;
+      performSearch();
+    }
+
+    async function performSearch() {
+      const query = document.getElementById('search-input').value.trim();
+      if (!query) return;
+
+      const yearFilter = document.getElementById('year-filter').value;
+      const pageSize = parseInt(document.getElementById('page-size').value);
+
+      // Update URL
+      const url = new URL(window.location);
+      url.searchParams.set('q', query);
+      window.history.pushState({}, '', url);
+
+      // UI state
+      isSearching = true;
+      document.getElementById('search-btn').disabled = true;
+      document.getElementById('progress-bar').style.display = 'block';
+      document.getElementById('search-stats').style.display = 'flex';
+      document.getElementById('quick-links').style.display = 'none';
+      document.getElementById('search-results').innerHTML = `
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>正在搜索 14,194 条语录...</p>
+        </div>
+      `;
+
+      const startTime = Date.now();
+      allEntries = [];
+
+      // Determine which years to search
+      const yearsToSearch = yearFilter ? [parseInt(yearFilter)] : years;
+
+      // Load and search each year
+      for (let i = 0; i < yearsToSearch.length; i++) {
+        const year = yearsToSearch[i];
+        const progress = ((i + 1) / yearsToSearch.length) * 100;
+        document.getElementById('progress-fill').style.width = progress + '%';
+        document.getElementById('stats-text').textContent = `正在搜索 ${year} 年... (${i + 1}/${yearsToSearch.length})`;
+
+        try {
+          let entries;
+          if (yearCache[year]) {
+            entries = yearCache[year];
+          } else {
+            const response = await fetch(`data/${year}.json`);
+            entries = await response.json();
+            yearCache[year] = entries;
+          }
+
+          // Search in this year's entries
+          const matches = entries.filter(entry => {
+            return entry.content && entry.content.toLowerCase().includes(query.toLowerCase());
+          });
+
+          matches.forEach(m => m.year = year);
+          allEntries.push(...matches);
+        } catch (e) {
+          console.error(`Failed to load ${year}:`, e);
+        }
+      }
+
+      // Sort by date
+      allEntries.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+      searchResults = allEntries;
+      currentPage = 1;
+
+      // Update stats
+      document.getElementById('stats-text').textContent = `找到 ${searchResults.length} 条结果`;
+      document.getElementById('stats-time').textContent = `用时 ${elapsed} 秒`;
+      document.getElementById('progress-bar').style.display = 'none';
+      document.getElementById('search-btn').disabled = false;
+      isSearching = false;
+
+      // Render results
+      renderResults(currentPage, pageSize);
+      renderPagination(searchResults.length, pageSize);
+    }
+
+    function renderResults(page, pageSize) {
+      const container = document.getElementById('search-results');
+      const query = document.getElementById('search-input').value.trim();
+
+      if (searchResults.length === 0) {
+        container.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">🔍</div>
+            <h3>未找到相关语录</h3>
+            <p>尝试使用其他关键词，或减少筛选条件</p>
+          </div>
+        `;
+        return;
+      }
+
+      const start = (page - 1) * pageSize;
+      const end = Math.min(start + pageSize, searchResults.length);
+      const pageEntries = searchResults.slice(start, end);
+
+      let html = '';
+      pageEntries.forEach((entry, index) => {
+        const globalIndex = start + index + 1;
+        const highlightedContent = highlightText(entry.content, query);
+
+        html += `
+          <div class="quote-result">
+            <div style="display: flex; gap: 16px;">
+              <div style="flex-shrink: 0;">
+                <div style="
+                  width: 36px;
+                  height: 36px;
+                  background: var(--color-orange);
+                  color: white;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-family: var(--font-heading);
+                  font-weight: 600;
+                  font-size: 0.85rem;
+                ">${globalIndex}</div>
+              </div>
+              <div style="flex: 1;">
+                <p class="quote-content">${highlightedContent}</p>
+                <div class="quote-meta">
+                  <span class="quote-year">📅 ${entry.date}${entry.time ? ' ' + entry.time : ''}</span>
+                  <span class="quote-year">${entry.year}年</span>
+                  ${entry.has_forward ? '<span style="color: var(--color-orange);">↩️ 转发</span>' : ''}
+                  ${entry.is_reply ? '<span>💬 回复</span>' : ''}
+                  <span style="color: var(--color-mid-gray);">#${entry.id}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function highlightText(text, query) {
+      if (!text || !query) return escapeHtml(text);
+      const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+      return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+    }
+
+    function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderPagination(total, pageSize) {
+      const totalPages = Math.ceil(total / pageSize);
+      const container = document.getElementById('pagination');
+
+      if (totalPages <= 1) {
+        container.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+
+      // Prev button
+      html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← 上一页</button>`;
+
+      // Page numbers
+      const maxButtons = 7;
+      let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+      let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+      if (endPage - startPage < maxButtons - 1) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }
+
+      if (startPage > 1) {
+        html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+        if (startPage > 2) html += `<span style="padding: 8px;">...</span>`;
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += `<span style="padding: 8px;">...</span>`;
+        html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+      }
+
+      // Next button
+      html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>下一页 →</button>`;
+
+      container.innerHTML = html;
+    }
+
+    function goToPage(page) {
+      const pageSize = parseInt(document.getElementById('page-size').value);
+      currentPage = page;
+      renderResults(currentPage, pageSize);
+      renderPagination(searchResults.length, pageSize);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Page size change
+    document.getElementById('page-size').addEventListener('change', () => {
+      if (searchResults.length > 0) {
+        currentPage = 1;
+        const pageSize = parseInt(document.getElementById('page-size').value);
+        renderResults(currentPage, pageSize);
+        renderPagination(searchResults.length, pageSize);
+      }
+    });
+  </script>
+</body>
+</html>

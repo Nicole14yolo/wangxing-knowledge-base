@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公司档案 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="companies.html" class="active">公司档案</a></li>
+        <li><a href="people.html">人物档案</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Detail Header -->
+  <div class="detail-header">
+    <div class="container">
+      <h1>公司档案</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        王兴提及的 24 家公司及其商业启示
+      </p>
+    </div>
+  </div>
+
+  <!-- Companies Grid -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <!-- Filter Tags -->
+      <div style="margin-bottom: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <span class="card-badge" style="background-color: var(--color-orange); color: white;">全部</span>
+        <span class="card-badge">中国巨头</span>
+        <span class="card-badge">美国科技</span>
+        <span class="card-badge">投资/金融</span>
+      </div>
+
+      <div class="card-grid" id="companies-grid">
+        <!-- Company cards will be populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="companies.html">公司</a>
+          <a href="people.html">人物</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Company data
+    const companies = [
+      { name: '美团', domain: '本地生活服务', count: 100, desc: '王兴创立的公司，从团购到外卖到本地生活的完整演变。' },
+      { name: '苹果', domain: '消费电子', count: 120, desc: '产品审美的标杆，封闭生态vs开放平台的思考。' },
+      { name: '亚马逊', domain: '电商/云计算', count: 44, desc: '长期主义典范，基础设施即护城河。' },
+      { name: '腾讯', domain: '社交/游戏/投资', count: 42, desc: '不干预的投资文化，微信的克制哲学。' },
+      { name: '阿里', domain: '电商/云计算', count: 41, desc: '平台vs垂直的路线之争。' },
+      { name: '百度', domain: '搜索/AI', count: 70, desc: '商业模式的时代性，搜索在移动端被分流。' },
+      { name: '谷歌', domain: '搜索/AI/云计算', count: 74, desc: '技术理想主义，AI时代的竞争。' },
+      { name: '微软', domain: '软件/云计算', count: 53, desc: '云计算转型，从软件许可到订阅服务。' },
+      { name: '华为', domain: '硬件/通信', count: 85, desc: '备胎计划与极限生存模式。' },
+      { name: '京东', domain: '自营电商/物流', count: 15, desc: '重资产物流模式，垂直vs平台的思考。' },
+      { name: '小米', domain: '智能硬件/IoT', count: 14, desc: '性价比策略，IoT转型与生态链。' },
+      { name: '字节', domain: '内容/AI/短视频', count: 9, desc: '算法分发，推荐vs搜索的路线差异。' },
+      { name: '滴滴', domain: '出行服务', count: 3, desc: 'TMD新格局，品类频次的商业逻辑。' },
+      { name: '网易', domain: '游戏/音乐/邮箱', count: 19, desc: '慢公司的价值，游戏现金牛模式。' },
+      { name: '360', domain: '网络安全/搜索', count: 15, desc: '免费安全模式，3Q大战的启示。' },
+      { name: '携程', domain: '在线旅游', count: 15, desc: '服务标准化，高频vs低频的运营逻辑。' },
+      { name: '拼多多', domain: '社交电商', count: 5, desc: '下沉市场，黄峥vs蒋凡的较量。' },
+      { name: '饭否', domain: '社交媒体', count: 401, desc: '王兴创立的微博客平台，14,194条语录的源头。' },
+      { name: '苹果', domain: '消费电子', count: 120, desc: '产品审美的标杆，封闭生态vs开放平台的思考。' },
+      { name: '蚂蚁', domain: '金融科技', count: 13, desc: '金融科技监管，平台与金融的边界。' },
+      { name: '微博', domain: '社交媒体', count: 21, desc: '饭否的替代者，信息环境的变迁。' },
+      { name: '微信', domain: '社交/支付/小程序', count: 74, desc: '超级App的示范，平台依赖与警惕。' },
+      { name: '快手', domain: '短视频/直播', count: 12, desc: '下沉市场，老铁经济与信任关系。' },
+      { name: '新浪', domain: '门户/社交媒体', count: 28, desc: '门户时代的巨人，微博的崛起与分流。' },
+      { name: '红杉资本', domain: '风险投资', count: 18, desc: '投资界的传奇，种红杉的长期主义隐喻。' }
+    ];
+
+    // Render company cards
+    const grid = document.getElementById('companies-grid');
+    companies.forEach(company => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.onclick = () => location.href = `company-detail.html?name=${encodeURIComponent(company.name)}`;
+      card.innerHTML = `
+        <div class="card-header">
+          <div>
+            <div class="card-title">${company.name}</div>
+            <div class="card-subtitle">${company.domain}</div>
+          </div>
+          <span class="card-badge">${company.count}次提及</span>
+        </div>
+        <p class="card-description">${company.desc}</p>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
