@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智库 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .insight-card {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 16px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .insight-card:hover {
+      border-color: var(--color-orange);
+      box-shadow: 0 8px 32px rgba(217, 119, 87, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .insight-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .insight-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .insight-desc {
+      color: var(--color-mid-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .insight-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--color-orange);
+    }
+
+    .section-divider {
+      margin: 48px 0 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-light-gray);
+    }
+
+    .section-divider h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="insights.html" class="active">智库</a></li>
+        <li><a href="library.html">书影</a></li>
+        <li><a href="quotes.html">金句</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="detail-header">
+    <div class="container">
+      <h1>智库</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        从 14,194 条语录中提炼的商业洞察与思想模型
+      </p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <!-- 年度分析 -->
+      <div class="section-divider">
+        <h2>📅 年度分析</h2>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card" onclick="location.href='years.html'">
+          <div class="insight-icon">📊</div>
+          <div class="insight-title">年度商业分析</div>
+          <div class="insight-desc">2007-2021 十五年的商业环境演变与王兴思想发展时间轴</div>
+          <div class="insight-stats">
+            <span>15 年</span>
+            <span>5 个阶段</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 实体档案 -->
+      <div class="section-divider">
+        <h2>🏢 实体档案</h2>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card" onclick="location.href='companies.html'">
+          <div class="insight-icon">🏢</div>
+          <div class="insight-title">公司档案</div>
+          <div class="insight-desc">王兴提及的科技公司及其商业启示，从美团到苹果、亚马逊</div>
+          <div class="insight-stats">
+            <span>24 家公司</span>
+          </div>
+        </div>
+        <div class="insight-card" onclick="location.href='people.html'">
+          <div class="insight-icon">👤</div>
+          <div class="insight-title">人物档案</div>
+          <div class="insight-desc">商业领袖与思想启发者，从乔布斯到张一鸣</div>
+          <div class="insight-stats">
+            <span>28 位人物</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 思维模型 -->
+      <div class="section-divider">
+        <h2>🧠 思维模型</h2>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card" onclick="location.href='models.html'">
+          <div class="insight-icon">🧠</div>
+          <div class="insight-title">核心概念</div>
+          <div class="insight-desc">王兴思考的底层框架：长期主义、产品思维、全球视野等 16 个维度</div>
+          <div class="insight-stats">
+            <span>16 个模型</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料库</a>
+          <a href="insights.html">智库</a>
+          <a href="library.html">书影</a>
+          <a href="quotes.html">金句</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

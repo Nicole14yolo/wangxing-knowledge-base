@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>书影 | 王兴饭否思想库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .library-card {
+      background: white;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 16px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .library-card:hover {
+      border-color: var(--color-orange);
+      box-shadow: 0 8px 32px rgba(217, 119, 87, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .library-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .library-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .library-desc {
+      color: var(--color-mid-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .library-count {
+      font-size: 0.85rem;
+      color: var(--color-orange);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">王兴思想库</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="corpus.html">语料库</a></li>
+        <li><a href="insights.html">智库</a></li>
+        <li><a href="library.html" class="active">书影</a></li>
+        <li><a href="quotes.html">金句</a></li>
+        <li><a href="search.html">搜索</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="detail-header">
+    <div class="container">
+      <h1>书影</h1>
+      <p style="color: var(--color-mid-gray); margin-top: 0.5rem;">
+        王兴提及的文化作品：书籍、影视、歌曲、刊物
+      </p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="library-grid">
+        <a href="media.html?type=books" class="library-card">
+          <div class="library-icon">📚</div>
+          <div class="library-title">书籍</div>
+          <div class="library-desc">《三体》《人类简史》《资本论》等商业、历史、科幻类著作</div>
+          <div class="library-count">30 本书</div>
+        </a>
+
+        <a href="media.html?type=movies" class="library-card">
+          <div class="library-icon">🎬</div>
+          <div class="library-title">影视</div>
+          <div class="library-desc">《肖申克的救赎》《让子弹飞》《黑客帝国》等经典电影</div>
+          <div class="library-count">50 部影视</div>
+        </a>
+
+        <a href="media.html?type=songs" class="library-card">
+          <div class="library-icon">🎵</div>
+          <div class="library-title">歌曲</div>
+          <div class="library-desc">《海阔天空》《董小姐》《Hallelujah》等中外音乐</div>
+          <div class="library-count">42 首歌曲</div>
+        </a>
+
+        <a href="media.html?type=magazines" class="library-card">
+          <div class="library-icon">📰</div>
+          <div class="library-title">刊物</div>
+          <div class="library-desc">《The Economist》《南方周末》《第一财经》等主流媒体</div>
+          <div class="library-count">16 本刊物</div>
+        </a>
+
+        <a href="media.html?type=dramas" class="library-card">
+          <div class="library-icon">📺</div>
+          <div class="library-title">剧集</div>
+          <div class="library-desc">《纸牌屋》《欲望都市》等热门剧集</div>
+          <div class="library-count">8 部剧集</div>
+        </a>
+
+        <a href="media.html?type=poems" class="library-card">
+          <div class="library-icon">✒️</div>
+          <div class="library-title">诗文</div>
+          <div class="library-desc">《将进酒》《独立宣言》等中外诗文经典</div>
+          <div class="library-count">12 篇诗文</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">王兴思想库</div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="corpus.html">语料库</a>
+          <a href="insights.html">智库</a>
+          <a href="library.html">书影</a>
+          <a href="quotes.html">金句</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
