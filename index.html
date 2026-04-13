@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>王兴饭否思想库 | Wangxing Fanfou Knowledge Base</title>
+  <meta name="description" content="收录王兴 2007-2021 年在饭否发布的 14,194 条语录，结构化为四层知识图谱">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,23 +35,23 @@
       </p>
 
       <div class="hero-stats">
-        <a href="corpus.html" class="stat-item" style="text-decoration:none;cursor:pointer;">
+        <a href="corpus.html" class="stat-item">
           <div class="stat-number">14,194</div>
           <div class="stat-label">语录条目</div>
         </a>
-        <a href="insights.html" class="stat-item" style="text-decoration:none;cursor:pointer;">
+        <a href="companies.html" class="stat-item">
           <div class="stat-number">24</div>
           <div class="stat-label">公司档案</div>
         </a>
-        <a href="insights.html" class="stat-item" style="text-decoration:none;cursor:pointer;">
+        <a href="people.html" class="stat-item">
           <div class="stat-number">28</div>
           <div class="stat-label">人物档案</div>
         </a>
-        <a href="insights.html" class="stat-item" style="text-decoration:none;cursor:pointer;">
+        <a href="models.html" class="stat-item">
           <div class="stat-number">16</div>
           <div class="stat-label">思维模型</div>
         </a>
-        <a href="quotes.html" class="stat-item" style="text-decoration:none;cursor:pointer;">
+        <a href="quotes.html" class="stat-item">
           <div class="stat-number">595</div>
           <div class="stat-label">金句精选</div>
         </a>
@@ -83,7 +84,7 @@
           <a href="insights.html" class="btn btn-primary">探索智库</a>
         </div>
 
-        <!-- Layer 3: Application -->
+        <!-- Layer 3: Library -->
         <div class="category-card">
           <div class="category-icon">🎯</div>
           <h3>03 · 书影层</h3>
@@ -103,7 +104,6 @@
       </div>
 
       <div class="card-grid" id="featured-companies">
-        <!-- Dynamic content will be loaded here -->
         <div class="card" onclick="location.href='company-detail.html?name=美团'">
           <div class="card-header">
             <div>
@@ -171,7 +171,7 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 40px;">
+      <div style="text-align: center; margin-top: 48px;">
         <a href="companies.html" class="btn btn-secondary">查看全部 24 个公司 →</a>
       </div>
     </div>
@@ -220,7 +220,7 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 40px;">
+      <div style="text-align: center; margin-top: 48px;">
         <a href="people.html" class="btn btn-secondary">查看全部人物 →</a>
       </div>
     </div>
@@ -235,7 +235,7 @@
       </div>
 
       <div class="card-grid">
-        <div class="card">
+        <div class="card" onclick="location.href='years.html'">
           <div class="card-header">
             <div>
               <div class="card-title">年度商业分析</div>
@@ -243,10 +243,10 @@
             </div>
           </div>
           <p class="card-description">每年商业大背景 + 王兴核心思想结论，分五个阶段还原思想演变。</p>
-          <a href="models.html" style="color: var(--color-orange);">查看分析 →</a>
+          <a href="years.html" style="color: var(--color-orange); display: inline-flex; align-items: center; gap: 4px;">查看分析 →</a>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="location.href='models.html'">
           <div class="card-header">
             <div>
               <div class="card-title">思维模型</div>
@@ -254,19 +254,61 @@
             </div>
           </div>
           <p class="card-description">全球视野、长期主义、产品思维、用户价值等思维维度全景图谱。</p>
-          <a href="models.html" style="color: var(--color-orange);">探索模型 →</a>
+          <a href="models.html" style="color: var(--color-orange); display: inline-flex; align-items: center; gap: 4px;">探索模型 →</a>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="location.href='search.html'">
           <div class="card-header">
             <div>
-              <div class="card-title">思维演变时间轴</div>
-              <div class="card-subtitle">概念×年份热力图</div>
+              <div class="card-title">全文搜索</div>
+              <div class="card-subtitle">14,194 条语录</div>
             </div>
           </div>
-          <p class="card-description">16个概念在2007-2021年的频率变化与三大转折点分析。</p>
-          <a href="corpus.html" style="color: var(--color-orange);">查看时间轴 →</a>
+          <p class="card-description">按关键词、年份、主题快速定位任何一条语录，支持实时搜索。</p>
+          <a href="search.html" style="color: var(--color-orange); display: inline-flex; align-items: center; gap: 4px;">立即搜索 →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access -->
+  <section class="section category-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>快速访问</h2>
+        <p>按不同维度浏览知识库内容</p>
+      </div>
+
+      <div class="card-grid">
+        <a href="quotes.html" class="card" style="text-decoration: none; color: inherit;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🏆 金句堂</div>
+              <div class="card-subtitle">Top 50 精选语录</div>
+            </div>
+          </div>
+          <p class="card-description">从全部语录中精选出的最具代表性、最具思想密度的 50 条金句。</p>
+        </a>
+
+        <a href="years.html" class="card" style="text-decoration: none; color: inherit;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📊 年度演变</div>
+              <div class="card-subtitle">2007-2021</div>
+            </div>
+          </div>
+          <p class="card-description">逐年查看王兴思想演变，每年配有商业背景、核心洞察与代表性语录。</p>
+        </a>
+
+        <a href="library.html" class="card" style="text-decoration: none; color: inherit;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📖 书影音</div>
+              <div class="card-subtitle">168 部作品</div>
+            </div>
+          </div>
+          <p class="card-description">王兴推荐的书籍、影视、歌曲、刊物，附相关语录与观点。</p>
+        </a>
       </div>
     </div>
   </section>
@@ -279,14 +321,14 @@
         <div class="footer-links">
           <a href="index.html">首页</a>
           <a href="corpus.html">语料</a>
-          <a href="companies.html">公司</a>
-          <a href="people.html">人物</a>
-          <a href="models.html">思维模型</a>
+          <a href="insights.html">智库</a>
+          <a href="library.html">书影</a>
           <a href="quotes.html">金句</a>
+          <a href="search.html">搜索</a>
         </div>
       </div>
-      <p style="text-align: center; margin-top: 30px; color: var(--color-mid-gray); font-size: 0.9rem;">
-        基于 Anthropic 品牌风格设计 · 数据来源于王兴饭否 2007-2021
+      <p style="text-align: center; margin-top: 32px; color: var(--color-gray-500); font-size: 0.875rem;">
+        数据来源于王兴饭否 2007-2021 · 知识库仅供学习研究使用
       </p>
     </div>
   </footer>
