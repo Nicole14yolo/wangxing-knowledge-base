@@ -259,14 +259,15 @@ function updateStats() {
       document.getElementById('media-modal').style.display = 'flex';
     }
 
-    document.getElementById('modal-close').onclick = () => {
-      document.getElementById('media-modal').style.display = 'none';
-    };
-    document.getElementById('media-modal').onclick = (e) => {
-      if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
-    };
-
-    loadData();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('modal-close').onclick = () => {
+        document.getElementById('media-modal').style.display = 'none';
+      };
+      document.getElementById('media-modal').onclick = (e) => {
+        if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
+      };
+      loadData();
+    });
   </script>
 
   <!-- Detail Modal -->
