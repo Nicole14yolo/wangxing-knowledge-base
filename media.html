@@ -178,7 +178,16 @@
 
     function loadData() {
       updateStats();
-      switchTab('books', document.querySelector('.media-tab'));
+      // Read URL parameter for category
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get('type') || 'books';
+      // Map type to tab index
+      const typeToIndex = {'books':0, 'movies':1, 'songs':2, 'magazines':3, 'dramas':4, 'poems':5};
+      const tabIndex = typeToIndex[type] || 0;
+      const tabs = document.querySelectorAll('.media-tab');
+      if (tabs[tabIndex]) {
+        switchTab(type, tabs[tabIndex]);
+      }
     }
 function updateStats() {
       document.getElementById('stat-books').textContent = mediaData.books?.length || 0;
