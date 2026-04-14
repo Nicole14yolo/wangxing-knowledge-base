@@ -567,13 +567,6 @@
           "date": "2009-02-22 12:34"
         }
       ]
-    },
-    {
-      "name": "📚 书 索引",
-      "title": "📚 书 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "movies": [
@@ -1536,13 +1529,6 @@
           "date": "2016-11-23 16:10"
         }
       ]
-    },
-    {
-      "name": "🎬 影 索引",
-      "title": "🎬 影 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "songs": [
@@ -2289,13 +2275,6 @@
           "date": "2013-07-29 15:45"
         }
       ]
-    },
-    {
-      "name": "🎵 歌 索引",
-      "title": "🎵 歌 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "magazines": [
@@ -2598,13 +2577,6 @@
           "date": "2009-03-31 13:11"
         }
       ]
-    },
-    {
-      "name": "📰 刊 索引",
-      "title": "📰 刊 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "dramas": [
@@ -2755,13 +2727,6 @@
           "date": "2010-12-24 22:52"
         }
       ]
-    },
-    {
-      "name": "📺 剧 索引",
-      "title": "📺 剧 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "poems": [
@@ -2968,13 +2933,6 @@
           "date": "2012-04-06 11:14"
         }
       ]
-    },
-    {
-      "name": "📜 诗文 索引",
-      "title": "📜 诗文 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ],
   "others": [
@@ -3029,13 +2987,6 @@
           "date": "2020-02-08 19:39"
         }
       ]
-    },
-    {
-      "name": "🗂 其他 索引",
-      "title": "🗂 其他 索引",
-      "quote_count": 0,
-      "time_distribution": "",
-      "quotes": []
     }
   ]
 }
