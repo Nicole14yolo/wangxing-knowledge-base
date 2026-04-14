@@ -177,12 +177,25 @@
 
     async function loadData() {
       try {
-        const res = await fetch('data/media-full.json');
-        mediaData = await res.json();
+        const res = await fetch('data/media-full.json?v=3');
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        const text = await res.text();
+        try {
+          mediaData = JSON.parse(text);
+        } catch (parseErr) {
+          console.error('JSON parse error:', parseErr);
+          document.getElementById('media-content').innerHTML =
+            '<p style="text-align: center; color: red;">数据加载失败：JSON格式错误</p>';
+          return;
+        }
         updateStats();
         switchTab('books', document.querySelector('.media-tab'));
       } catch (e) {
         console.error('Failed to load media data:', e);
+        document.getElementById('media-content').innerHTML =
+          '<p style="text-align: center; color: var(--color-mid-gray);">加载失败: ' + e.message + '</p>';
       }
     }
 
