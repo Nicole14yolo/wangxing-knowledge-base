@@ -45,8 +45,8 @@ content = content.replace(
 
 // 5. Update hero subtitle
 content = content.replace(
-  /结构化为三层知识图谱/,
-  '结构化为四层知识图谱'
+  /结构化为四层知识图谱/,
+  '结构化为三层知识图谱'
 );
 
 // 6. Update footer links
